@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-Color: rgb(234, 233, 233);
+
+  --blackpos-primary: #3C4787;
+  --blackpos-primary-hover: #4099af;
+  --blackpos-text-secondary: #6a6666;
+  --blackpos-bg: #fafafa;
+
+  --font-family1: 'Franklin Gothic Medium','Arial Narrow',Arial,sans-serif;
+  --font-family2: 'Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS', sans-serif;
+  --font-family3: 'Lucida Sans','Lucida Sans Regular','Lucida Grande','Lucida Sans Unicode', Geneva,Verdana,sans-serif;
+  --font-family4: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans', Arial,sans-serif;
+}
+
+html, body {
+  height: 100%;
+  background-color: var(--bg-Color);
+}
+
+::-webkit-scrollbar { width: 5px; height: 4px; }
+::-webkit-scrollbar-thumb { background: transparent; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: rgb(183, 181, 181); }

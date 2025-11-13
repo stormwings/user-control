@@ -1,0 +1,121 @@
+import { useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import { useSelector, useDispatch } from "react-redux";
+import { register as registerAction, reset } from "../features/auth/authSlice";
+
+const Register = () => {
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const { name, email, password } = form;
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { success, error, message, isLoading } = useSelector((s) => s.auth);
+
+  useEffect(() => {
+    if (error) toast.error(message);
+    if (success) navigate("/login");
+
+    dispatch(reset());
+  }, [error, success, message, navigate, dispatch]);
+
+  const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(registerAction({ name, email, password }));
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-[var(--bg-Color)] flex items-start md:items-center justify-center p-4 pt-10">
+      <form
+        onSubmit={handleSubmit}
+        className="w-[400px] max-w-full rounded-xl bg-white p-12 pt-12 shadow-[0_12px_32px_rgba(0,0,0,.12)]"
+        aria-label="Formulario de registro"
+      >
+        <h1 className="mb-6 text-center text-2xl font-f1 text-brand-text">
+          Crear cuenta
+        </h1>
+
+        <div className="mb-3 flex flex-col">
+          <label
+            htmlFor="name"
+            className="text-sm font-semibold text-brand-primary"
+          >
+            Nombre
+          </label>
+          <input
+            id="name"
+            type="text"
+            name="name"
+            placeholder="Tu nombre"
+            value={name}
+            onChange={onChange}
+            required
+            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+          />
+        </div>
+
+        <div className="mb-3 flex flex-col">
+          <label
+            htmlFor="email"
+            className="text-sm font-semibold text-brand-primary"
+          >
+            Correo
+          </label>
+          <input
+            id="email"
+            type="email"
+            name="email"
+            placeholder="tu@email.com"
+            value={email}
+            onChange={onChange}
+            autoComplete="username"
+            required
+            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+          />
+        </div>
+
+        <div className="mb-4 flex flex-col">
+          <label
+            htmlFor="password"
+            className="text-sm font-semibold text-brand-primary"
+          >
+            Contraseña
+          </label>
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="••••••••"
+            value={password}
+            onChange={onChange}
+            autoComplete="new-password"
+            required
+            minLength={6}
+            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+          />
+        </div>
+
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="w-full rounded-full bg-brand-primary px-4 py-3 font-bold text-white shadow-[0_6px_16px_rgba(60,71,135,.25)] transition active:translate-y-[1px] hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-70"
+        >
+          {isLoading ? "Creando..." : "Registrarse"}
+        </button>
+
+        <div className="mt-4 text-center">
+          <Link
+            to="/"
+            className="font-medium text-brand-primary hover:text-brand-hover"
+          >
+            Volver al inicio
+          </Link>
+        </div>
+      </form>
+    </div>
+  );
+};
+
+export default Register;
