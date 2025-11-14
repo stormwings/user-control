@@ -1,3 +1,7 @@
+// Redux
+export * from './usersSlice';
+export * from './selectors';
+
 // Types
 export * from './types/userTypes';
 
