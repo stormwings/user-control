@@ -9,7 +9,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
       <CardHeader title="Estado de Cuenta" />
 
       <div className="space-y-4">
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
             Estado actual
@@ -21,14 +20,12 @@ export const UserAccountStateCard = ({ user, onAction }) => {
           </p>
         </div>
 
-        {}
         <div className="space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3">
             Acciones rápidas
           </p>
 
           <div className="grid grid-cols-1 gap-2">
-            {}
             <Button
               variant="ghost"
               size="sm"
@@ -39,7 +36,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               <span>Cambiar rol</span>
             </Button>
 
-            {}
             {isUserActive(user) && (
               <Button
                 variant="ghost"
@@ -64,7 +60,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               </Button>
             )}
 
-            {}
             {isUserActive(user) && !isUserBlocked(user) && (
               <Button
                 variant="ghost"
@@ -89,7 +84,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               </Button>
             )}
 
-            {}
             <Button
               variant="ghost"
               size="sm"

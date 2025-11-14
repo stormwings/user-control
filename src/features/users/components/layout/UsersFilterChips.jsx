@@ -5,7 +5,6 @@ import { FilterButton } from '../../../../components/admin/FilterButton';
 export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole }) => {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      {}
       <div className="flex items-center gap-2">
         <FilterButton
           active={status === UserStatus.ACTIVE}
@@ -35,7 +34,6 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
         </FilterButton>
       </div>
 
-      {}
       <div className="flex items-center gap-2 border-l border-gray-300 dark:border-gray-600 pl-2">
         <FilterButton
           active={role === UserRole.ADMIN}
@@ -56,7 +54,6 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
         </FilterButton>
       </div>
 
-      {}
       {(status !== 'all' || role !== 'all') && (
         <FilterButton
           active={status === 'all' && role === 'all'}

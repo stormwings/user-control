@@ -27,7 +27,6 @@ export const ConfirmDialog = ({
         role="dialog"
         aria-modal="true"
       >
-        {}
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
             <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${variantColors[variant]} bg-opacity-10`}>
@@ -48,14 +47,12 @@ export const ConfirmDialog = ({
           </button>
         </div>
 
-        {}
         <div className="px-6 pb-6">
           <p className="text-sm text-gray-600 dark:text-gray-300 pl-13">
             {message}
           </p>
         </div>
 
-        {}
         <div className="flex items-center justify-end gap-3 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
           <Button
             variant="ghost"

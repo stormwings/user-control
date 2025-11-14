@@ -7,7 +7,6 @@ export const UserSummaryCard = ({ user }) => {
       <CardHeader title="Información Básica" />
 
       <div className="space-y-4">
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
             Nombre completo
@@ -17,7 +16,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiMail className="text-xs" />
@@ -28,7 +26,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiPhone className="text-xs" />
@@ -39,7 +36,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiMapPin className="text-xs" />

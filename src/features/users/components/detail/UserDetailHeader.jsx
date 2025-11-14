@@ -10,7 +10,6 @@ export const UserDetailHeader = ({ user, onAction }) => {
   return (
     <header className="mb-6">
       <div className="flex items-start justify-between gap-4">
-        {}
         <div className="flex-1">
           <Button
             variant="ghost"
@@ -23,12 +22,10 @@ export const UserDetailHeader = ({ user, onAction }) => {
           </Button>
 
           <div className="flex items-center gap-4">
-            {}
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 dark:bg-brand-hover/10 text-2xl font-semibold text-brand-primary dark:text-brand-hover">
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
 
-            {}
             <div>
               <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                 {user?.name || 'Usuario'}
@@ -44,7 +41,6 @@ export const UserDetailHeader = ({ user, onAction }) => {
           </div>
         </div>
 
-        {}
         <div className="flex items-center gap-2">
           <Button
             variant="primary"

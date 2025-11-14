@@ -88,7 +88,6 @@ function UsersListPage() {
         onChangePage={setPage}
       />
 
-      {}
       <ChangeRoleDialog
         open={currentAction?.type === 'changeRole'}
         user={currentAction?.user}

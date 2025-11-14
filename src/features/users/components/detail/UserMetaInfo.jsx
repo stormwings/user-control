@@ -18,7 +18,6 @@ export const UserMetaInfo = ({ user }) => {
       <CardHeader title="Información del Sistema" />
 
       <div className="space-y-4">
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiCalendar className="text-xs" />
@@ -29,7 +28,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiClock className="text-xs" />
@@ -40,7 +38,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiClock className="text-xs" />
@@ -51,7 +48,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {}
         {user?.createdBy && (
           <div>
             <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">

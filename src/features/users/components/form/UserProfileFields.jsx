@@ -1,5 +1,5 @@
 
-export const UserProfileFields = ({ values, onChange, mode = 'create', errors = {} }) => {
+export const UserProfileFields = ({ values, onChange, mode = 'create', errors }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     onChange({ ...values, [name]: value });
@@ -11,7 +11,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors = 
 
   return (
     <div className="space-y-4">
-      {}
       <div className="flex flex-col">
         <label htmlFor="name" className={labelClass}>
           Nombre completo <span className="text-red-500">*</span>
@@ -29,7 +28,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors = 
         {errors.name && <span className={errorClass}>{errors.name}</span>}
       </div>
 
-      {}
       <div className="flex flex-col">
         <label htmlFor="email" className={labelClass}>
           Correo electrónico <span className="text-red-500">*</span>
@@ -48,7 +46,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors = 
         {errors.email && <span className={errorClass}>{errors.email}</span>}
       </div>
 
-      {}
       {mode === 'create' && (
         <div className="flex flex-col">
           <label htmlFor="password" className={labelClass}>
@@ -73,7 +70,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors = 
         </div>
       )}
 
-      {}
       <div className="flex flex-col">
         <label htmlFor="phone" className={labelClass}>
           Teléfono
@@ -90,7 +86,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors = 
         {errors.phone && <span className={errorClass}>{errors.phone}</span>}
       </div>
 
-      {}
       <div className="flex flex-col">
         <label htmlFor="branch" className={labelClass}>
           Sucursal
