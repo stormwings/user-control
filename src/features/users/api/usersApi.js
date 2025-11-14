@@ -16,7 +16,7 @@ import httpRequest from '../../../utils/request';
  */
 export async function fetchUsers(params = {}) {
   try {
-    const response = await httpRequest.get('/admin/users', { params });
+    const response = await httpRequest.get('auth/users', { params });
     return response.data;
   } catch (error) {
     console.error('Fetch users error:', error);
@@ -31,7 +31,7 @@ export async function fetchUsers(params = {}) {
  */
 export async function fetchUserById(userId) {
   try {
-    const response = await httpRequest.get(`/admin/users/${userId}`);
+    const response = await httpRequest.get(`auth/users/${userId}`);
     return response.data;
   } catch (error) {
     console.error('Fetch user by ID error:', error);
@@ -46,7 +46,7 @@ export async function fetchUserById(userId) {
  */
 export async function createUser(payload) {
   try {
-    const response = await httpRequest.post('/admin/users', payload);
+    const response = await httpRequest.post('auth/users', payload);
     return response.data;
   } catch (error) {
     console.error('Create user error:', error);
@@ -62,7 +62,7 @@ export async function createUser(payload) {
  */
 export async function updateUser(userId, payload) {
   try {
-    const response = await httpRequest.put(`/admin/users/${userId}`, payload);
+    const response = await httpRequest.put(`auth/users/${userId}`, payload);
     return response.data;
   } catch (error) {
     console.error('Update user error:', error);
@@ -78,7 +78,7 @@ export async function updateUser(userId, payload) {
  */
 export async function changeUserRole(userId, role) {
   try {
-    const response = await httpRequest.patch(`/admin/users/${userId}/role`, { role });
+    const response = await httpRequest.patch(`auth/users/${userId}/role`, { role });
     return response.data;
   } catch (error) {
     console.error('Change user role error:', error);
@@ -94,7 +94,7 @@ export async function changeUserRole(userId, role) {
  */
 export async function blockUser(userId, reason) {
   try {
-    const response = await httpRequest.post(`/admin/users/${userId}/block`, { reason });
+    const response = await httpRequest.post(`auth/users/${userId}/block`, { reason });
     return response.data;
   } catch (error) {
     console.error('Block user error:', error);
@@ -109,7 +109,7 @@ export async function blockUser(userId, reason) {
  */
 export async function unblockUser(userId) {
   try {
-    const response = await httpRequest.post(`/admin/users/${userId}/unblock`);
+    const response = await httpRequest.post(`auth/users/${userId}/unblock`);
     return response.data;
   } catch (error) {
     console.error('Unblock user error:', error);
@@ -124,7 +124,7 @@ export async function unblockUser(userId) {
  */
 export async function deactivateUser(userId) {
   try {
-    const response = await httpRequest.post(`/admin/users/${userId}/deactivate`);
+    const response = await httpRequest.post(`auth/users/${userId}/deactivate`);
     return response.data;
   } catch (error) {
     console.error('Deactivate user error:', error);
@@ -139,7 +139,7 @@ export async function deactivateUser(userId) {
  */
 export async function activateUser(userId) {
   try {
-    const response = await httpRequest.post(`/admin/users/${userId}/activate`);
+    const response = await httpRequest.post(`auth/users/${userId}/activate`);
     return response.data;
   } catch (error) {
     console.error('Activate user error:', error);
@@ -155,7 +155,7 @@ export async function activateUser(userId) {
  */
 export async function resetUserPassword(userId, newPassword) {
   try {
-    const response = await httpRequest.post(`/admin/users/${userId}/reset-password`, {
+    const response = await httpRequest.post(`auth/users/${userId}/reset-password`, {
       password: newPassword,
     });
     return response.data;
@@ -172,7 +172,7 @@ export async function resetUserPassword(userId, newPassword) {
  */
 export async function deleteUser(userId) {
   try {
-    const response = await httpRequest.delete(`/admin/users/${userId}`);
+    const response = await httpRequest.delete(`auth/users/${userId}`);
     return response.data;
   } catch (error) {
     console.error('Delete user error:', error);
@@ -188,7 +188,7 @@ export async function deleteUser(userId) {
  */
 export async function fetchUserAuditLog(userId, limit = 10) {
   try {
-    const response = await httpRequest.get(`/admin/users/${userId}/audit`, {
+    const response = await httpRequest.get(`auth/users/${userId}/audit`, {
       params: { limit },
     });
     return response.data;
