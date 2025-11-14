@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: ["./src/**/*.{js,jsx,ts,tsx,html}"],
   theme: {
     extend: {
@@ -9,6 +10,13 @@ module.exports = {
           hover: "#4099af",
           text: "#6a6666",
           bg: "#fafafa",
+          dark: {
+            bg: "#0f172a",
+            surface: "#1e293b",
+            border: "#334155",
+            text: "#e2e8f0",
+            muted: "#94a3b8",
+          },
         },
       },
       fontFamily: {

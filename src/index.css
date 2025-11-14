@@ -16,11 +16,18 @@
   --font-family4: 'Trebuchet MS','Lucida Sans Unicode','Lucida Grande','Lucida Sans', Arial,sans-serif;
 }
 
+.dark {
+  --bg-Color: #0f172a;
+  --blackpos-bg: #1e293b;
+}
+
 html, body {
   height: 100%;
   background-color: var(--bg-Color);
+  transition: background-color 0.3s ease;
 }
 
 ::-webkit-scrollbar { width: 5px; height: 4px; }
 ::-webkit-scrollbar-thumb { background: transparent; border-radius: 10px; }
 ::-webkit-scrollbar-thumb:hover { background: rgb(183, 181, 181); }
+.dark ::-webkit-scrollbar-thumb:hover { background: rgb(100, 116, 139); }

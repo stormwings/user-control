@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register as registerAction, reset } from "../features/auth/authSlice";
+import ThemeToggleButton from "../components/ThemeToggleButton";
 
 const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -28,19 +29,20 @@ const Register = () => {
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg-Color)] flex items-start md:items-center justify-center p-4 pt-10">
+      <ThemeToggleButton className="fixed top-4 right-4" />
       <form
         onSubmit={handleSubmit}
-        className="w-[400px] max-w-full rounded-xl bg-white p-12 pt-12 shadow-[0_12px_32px_rgba(0,0,0,.12)]"
+        className="w-[400px] max-w-full rounded-xl bg-white dark:bg-gray-800 p-12 pt-12 shadow-[0_12px_32px_rgba(0,0,0,.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,.4)] transition-colors"
         aria-label="Formulario de registro"
       >
-        <h1 className="mb-6 text-center text-2xl font-f1 text-brand-text">
+        <h1 className="mb-6 text-center text-2xl font-f1 text-brand-text dark:text-gray-200">
           Crear cuenta
         </h1>
 
         <div className="mb-3 flex flex-col">
           <label
             htmlFor="name"
-            className="text-sm font-semibold text-brand-primary"
+            className="text-sm font-semibold text-brand-primary dark:text-brand-hover"
           >
             Nombre
           </label>
@@ -52,14 +54,14 @@ const Register = () => {
             value={name}
             onChange={onChange}
             required
-            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+            className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
 
         <div className="mb-3 flex flex-col">
           <label
             htmlFor="email"
-            className="text-sm font-semibold text-brand-primary"
+            className="text-sm font-semibold text-brand-primary dark:text-brand-hover"
           >
             Correo
           </label>
@@ -72,14 +74,14 @@ const Register = () => {
             onChange={onChange}
             autoComplete="username"
             required
-            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+            className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
 
         <div className="mb-4 flex flex-col">
           <label
             htmlFor="password"
-            className="text-sm font-semibold text-brand-primary"
+            className="text-sm font-semibold text-brand-primary dark:text-brand-hover"
           >
             Contraseña
           </label>
@@ -93,14 +95,14 @@ const Register = () => {
             autoComplete="new-password"
             required
             minLength={6}
-            className="mt-2 rounded-lg border border-gray-200 bg-[#f6f6f6] px-3 py-3 outline-none transition focus:border-brand-primary focus:bg-white focus:ring-4 focus:ring-[rgba(60,71,135,0.15)]"
+            className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
 
         <button
           type="submit"
           disabled={isLoading}
-          className="w-full rounded-full bg-brand-primary px-4 py-3 font-bold text-white shadow-[0_6px_16px_rgba(60,71,135,.25)] transition active:translate-y-[1px] hover:bg-brand-hover disabled:cursor-not-allowed disabled:opacity-70"
+          className="w-full rounded-full bg-brand-primary dark:bg-brand-hover px-4 py-3 font-bold text-white shadow-[0_6px_16px_rgba(60,71,135,.25)] dark:shadow-[0_6px_16px_rgba(64,153,175,.25)] transition active:translate-y-[1px] hover:bg-brand-hover dark:hover:bg-opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isLoading ? "Creando..." : "Registrarse"}
         </button>
@@ -108,7 +110,7 @@ const Register = () => {
         <div className="mt-4 text-center">
           <Link
             to="/"
-            className="font-medium text-brand-primary hover:text-brand-hover"
+            className="font-medium text-brand-primary dark:text-brand-hover hover:text-brand-hover dark:hover:text-opacity-80"
           >
             Volver al inicio
           </Link>

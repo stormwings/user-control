@@ -10,6 +10,12 @@ import Content from "./pages/Content";
 import NotFound from "./pages/NotFound";
 import PrivateRoute from "./pages/PrivateRoute";
 
+// Users module pages
+import UsersListPage from "./pages/users/UsersListPage";
+import UserCreatePage from "./pages/users/UserCreatePage";
+import UserDetailPage from "./pages/users/UserDetailPage";
+import UserEditPage from "./pages/users/UserEditPage";
+
 function App() {
   return (
     <>
@@ -29,6 +35,12 @@ function App() {
               }
             >
               <Route path="" element={<Content />} />
+
+              {/* Users Module Routes */}
+              <Route path="users" element={<UsersListPage />} />
+              <Route path="users/new" element={<UserCreatePage />} />
+              <Route path="users/:userId" element={<UserDetailPage />} />
+              <Route path="users/:userId/edit" element={<UserEditPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
