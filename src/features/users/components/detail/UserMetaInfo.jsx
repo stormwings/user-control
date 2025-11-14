@@ -1,10 +1,6 @@
 import { FiClock, FiCalendar, FiUser } from 'react-icons/fi';
 import { Card, CardHeader } from '../../../../components/ui/Card';
 
-/**
- * User Meta Info Card Component
- * Display metadata like creation date, last login, etc.
- */
 export const UserMetaInfo = ({ user }) => {
   const formatDate = (date) => {
     if (!date) return '—';
@@ -22,7 +18,6 @@ export const UserMetaInfo = ({ user }) => {
       <CardHeader title="Información del Sistema" />
 
       <div className="space-y-4">
-        {/* Created At */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiCalendar className="text-xs" />
@@ -33,7 +28,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {/* Last Login */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiClock className="text-xs" />
@@ -44,7 +38,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {/* Updated At */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiClock className="text-xs" />
@@ -55,7 +48,6 @@ export const UserMetaInfo = ({ user }) => {
           </p>
         </div>
 
-        {/* Created By */}
         {user?.createdBy && (
           <div>
             <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">

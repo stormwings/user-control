@@ -1,8 +1,5 @@
 import { FiUsers } from 'react-icons/fi';
 
-/**
- * Users Empty State Component
- */
 export const UsersEmptyState = ({ message = "No se encontraron usuarios" }) => {
   return (
     <div className="flex flex-col items-center justify-center py-12 px-4">

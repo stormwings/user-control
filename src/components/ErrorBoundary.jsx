@@ -1,10 +1,6 @@
 import React from 'react';
 import { toast } from 'react-toastify';
 
-/**
- * Error Boundary Component
- * Catches React errors and displays a fallback UI
- */
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -16,18 +12,14 @@ class ErrorBoundary extends React.Component {
   }
 
   static getDerivedStateFromError(error) {
-    // Update state so the next render will show the fallback UI
     return { hasError: true };
   }
 
   componentDidCatch(error, errorInfo) {
-    // Log the error to console
     console.error('ErrorBoundary caught an error:', error, errorInfo);
     
-    // Show error toast
     toast.error('Ocurrió un error inesperado. Por favor recarga la página.');
 
-    // You can also log the error to an error reporting service here
     this.setState({
       error,
       errorInfo
@@ -44,7 +36,6 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      // Fallback UI
       return (
         <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 p-4">
           <div className="max-w-md w-full bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8 text-center">

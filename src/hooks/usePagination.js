@@ -19,7 +19,6 @@ export const usePagination = (items, itemsPerPage = 10) => {
     setCurrentPage(1);
   }, []);
 
-  // Reset to page 1 when items change significantly
   useEffect(() => {
     if (currentPage > totalPages && totalPages > 0) {
       setCurrentPage(1);

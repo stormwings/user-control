@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { FaBox, FaUserCircle, FaSignInAlt, FaUsers } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 import { logout, reset } from "../features/auth/authSlice";
 import ThemeToggle from "./ThemeToggle";
 
@@ -33,7 +34,7 @@ const SidebarLeft = () => {
       navigate("/");
     } catch (error) {
       console.error('Logout error:', error);
-      // Even if logout fails on server, clear local state
+      toast.error(error || 'Error al cerrar sesión');
       dispatch(reset());
       navigate("/");
     }

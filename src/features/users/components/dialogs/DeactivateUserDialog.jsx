@@ -1,9 +1,6 @@
 import { ConfirmDialog } from './ConfirmDialog';
 import useUserMutations from '../../hooks/useUserMutations';
 
-/**
- * Deactivate User Dialog Component
- */
 export const DeactivateUserDialog = ({ open, user, onClose, onSuccess }) => {
   const { deactivateUser, isLoading } = useUserMutations();
 
@@ -15,7 +12,6 @@ export const DeactivateUserDialog = ({ open, user, onClose, onSuccess }) => {
       onSuccess?.();
       onClose();
     } catch (error) {
-      // Error is handled by useUserMutations
     }
   };
 

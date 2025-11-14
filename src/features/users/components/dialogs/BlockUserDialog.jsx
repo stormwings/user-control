@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { FiLock } from 'react-icons/fi';
 import useUserMutations from '../../hooks/useUserMutations';
 
-/**
- * Block User Dialog Component
- */
 export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
   const [reason, setReason] = useState('');
   const { blockUser, isLoading } = useUserMutations();
@@ -18,7 +15,6 @@ export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
       onClose();
       setReason('');
     } catch (error) {
-      // Error is handled by useUserMutations
     }
   };
 

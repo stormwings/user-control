@@ -1,9 +1,5 @@
 import React from 'react';
 
-/**
- * Loading Spinner Component
- * Reusable loading indicator
- */
 const Loading = ({ 
   size = 'md', 
   message = null,

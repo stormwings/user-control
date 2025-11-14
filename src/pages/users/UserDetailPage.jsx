@@ -11,10 +11,6 @@ import BlockUserDialog from '../../features/users/components/dialogs/BlockUserDi
 import DeactivateUserDialog from '../../features/users/components/dialogs/DeactivateUserDialog';
 import ResetPasswordDialog from '../../features/users/components/dialogs/ResetPasswordDialog';
 
-/**
- * User Detail Page
- * Page for viewing user details and performing actions
- */
 function UserDetailPage() {
   const { userId } = useParams();
   const { user, auditLog, isLoading, isLoadingAudit, error, refresh } = useUserDetail(userId);
@@ -65,20 +61,17 @@ function UserDetailPage() {
       <UserDetailHeader user={user} onAction={handleAction} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column - Main Info */}
         <div className="lg:col-span-2 space-y-6">
           <UserSummaryCard user={user} />
           <UserMetaInfo user={user} />
         </div>
 
-        {/* Right Column - Actions & Audit */}
         <div className="space-y-6">
           <UserAccountStateCard user={user} onAction={handleAction} />
           <UserAuditMiniList auditLog={auditLog} isLoading={isLoadingAudit} />
         </div>
       </div>
 
-      {/* Action Dialogs */}
       <ChangeRoleDialog
         open={currentAction?.type === 'changeRole'}
         user={currentAction?.user}
