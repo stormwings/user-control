@@ -1,10 +1,6 @@
 import { FiActivity } from 'react-icons/fi';
 import { Card, CardHeader } from '../../../../components/ui/Card';
 
-/**
- * User Audit Mini List Component
- * Display recent activity/audit events
- */
 export const UserAuditMiniList = ({ auditLog, isLoading }) => {
   const formatDate = (date) => {
     if (!date) return '';

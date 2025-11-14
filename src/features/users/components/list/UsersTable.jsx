@@ -2,10 +2,6 @@ import { UsersTableHeader } from './UsersTableHeader';
 import { UsersTableBody } from './UsersTableBody';
 import { UsersEmptyState } from './UsersEmptyState';
 
-/**
- * Users Table Component
- * Main table for displaying users list
- */
 export const UsersTable = ({
   users,
   isLoading,

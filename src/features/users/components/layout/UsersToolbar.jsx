@@ -1,10 +1,6 @@
 import { FiUserPlus, FiDownload, FiFilter } from 'react-icons/fi';
 import { Button } from '../../../../components/ui/Button';
 
-/**
- * Users Toolbar Component
- * Action buttons for creating users, exporting, etc.
- */
 export const UsersToolbar = ({
   onCreateUser,
   onExport,

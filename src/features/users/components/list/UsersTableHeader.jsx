@@ -1,6 +1,4 @@
-/**
- * Users Table Header Component
- */
+
 export const UsersTableHeader = () => {
   return (
     <thead className="bg-gray-50 dark:bg-gray-900">

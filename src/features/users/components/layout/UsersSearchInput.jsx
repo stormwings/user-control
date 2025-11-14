@@ -1,9 +1,6 @@
 import { FiSearch } from 'react-icons/fi';
 import { Input } from '../../../../components/ui/Input';
 
-/**
- * Users Search Input Component
- */
 export const UsersSearchInput = ({ value, onChange, placeholder = "Buscar usuario..." }) => {
   return (
     <div className="relative w-full sm:w-80">

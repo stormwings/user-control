@@ -4,9 +4,6 @@ import { Button } from '../../../../components/ui/Button';
 import { UserRoleSelect } from '../form/UserRoleSelect';
 import useUserMutations from '../../hooks/useUserMutations';
 
-/**
- * Change Role Dialog Component
- */
 export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
   const [selectedRole, setSelectedRole] = useState(user?.role || '');
   const { changeRole, isLoading } = useUserMutations();
@@ -19,7 +16,6 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
       onSuccess?.();
       onClose();
     } catch (error) {
-      // Error is handled by useUserMutations
     }
   };
 
@@ -32,7 +28,6 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
         role="dialog"
         aria-modal="true"
       >
-        {/* Header */}
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900/30">
@@ -56,7 +51,6 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
           </button>
         </div>
 
-        {/* Body */}
         <div className="px-6 pb-6">
           <UserRoleSelect
             value={selectedRole}
@@ -65,7 +59,6 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
           />
         </div>
 
-        {/* Footer */}
         <div className="flex items-center justify-end gap-3 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
           <Button
             variant="ghost"

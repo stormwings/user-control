@@ -1,17 +1,12 @@
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { Card, CardHeader } from '../../../../components/ui/Card';
 
-/**
- * User Summary Card Component
- * Display basic user information
- */
 export const UserSummaryCard = ({ user }) => {
   return (
     <Card>
       <CardHeader title="Información Básica" />
 
       <div className="space-y-4">
-        {/* Name */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
             Nombre completo
@@ -21,7 +16,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {/* Email */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiMail className="text-xs" />
@@ -32,7 +26,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {/* Phone */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiPhone className="text-xs" />
@@ -43,7 +36,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        {/* Branch */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
             <FiMapPin className="text-xs" />

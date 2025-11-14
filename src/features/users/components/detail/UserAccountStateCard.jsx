@@ -3,17 +3,12 @@ import { Card, CardHeader } from '../../../../components/ui/Card';
 import { Button } from '../../../../components/ui/Button';
 import { isUserActive, isUserBlocked, isUserInactive } from '../../utils/userStatusHelpers';
 
-/**
- * User Account State Card Component
- * Display account status and quick actions
- */
 export const UserAccountStateCard = ({ user, onAction }) => {
   return (
     <Card>
       <CardHeader title="Estado de Cuenta" />
 
       <div className="space-y-4">
-        {/* Status description */}
         <div>
           <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
             Estado actual
@@ -25,14 +20,12 @@ export const UserAccountStateCard = ({ user, onAction }) => {
           </p>
         </div>
 
-        {/* Quick Actions */}
         <div className="space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
           <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3">
             Acciones rápidas
           </p>
 
           <div className="grid grid-cols-1 gap-2">
-            {/* Change Role */}
             <Button
               variant="ghost"
               size="sm"
@@ -43,7 +36,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               <span>Cambiar rol</span>
             </Button>
 
-            {/* Block / Unblock */}
             {isUserActive(user) && (
               <Button
                 variant="ghost"
@@ -68,7 +60,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               </Button>
             )}
 
-            {/* Deactivate / Activate */}
             {isUserActive(user) && !isUserBlocked(user) && (
               <Button
                 variant="ghost"
@@ -93,7 +84,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               </Button>
             )}
 
-            {/* Reset Password */}
             <Button
               variant="ghost"
               size="sm"

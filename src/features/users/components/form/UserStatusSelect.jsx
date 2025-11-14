@@ -1,8 +1,5 @@
 import { UserStatus, UserStatusLabels } from '../../types/userTypes';
 
-/**
- * User Status Select Component
- */
 export const UserStatusSelect = ({ value, onChange, disabled = false }) => {
   return (
     <div className="flex flex-col">

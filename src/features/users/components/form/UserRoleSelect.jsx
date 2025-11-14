@@ -1,8 +1,5 @@
 import { UserRole, UserRoleLabels } from '../../types/userTypes';
 
-/**
- * User Role Select Component
- */
 export const UserRoleSelect = ({ value, onChange, disabled = false, required = true }) => {
   return (
     <div className="flex flex-col">

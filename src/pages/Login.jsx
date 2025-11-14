@@ -29,10 +29,9 @@ const Login = () => {
     
     try {
       await dispatch(login({ email, password })).unwrap();
-      // Success will be handled by useEffect
     } catch (error) {
-      // Error will be handled by useEffect and axios interceptor
       console.error('Login error:', error);
+      toast.error(error || 'Error al iniciar sesión');
     }
   };
 

@@ -15,13 +15,7 @@ import {
 } from './api/usersApi';
 import { mapUserFromApi, mapUsersFromApi } from './utils/userMappers';
 
-/**
- * Users Redux Slice
- * Manages users state in Redux store
- */
-
 const initialState = {
-  // List view
   users: [],
   filters: {
     search: '',
@@ -37,21 +31,14 @@ const initialState = {
   isLoading: false,
   error: null,
 
-  // Detail view
   currentUser: null,
   isLoadingDetail: false,
   detailError: null,
 
-  // Operations
   isSubmitting: false,
   submitError: null,
 };
 
-// Async Thunks
-
-/**
- * Fetch users list with filters
- */
 export const getUsersList = createAsyncThunk(
   'users/getUsersList',
   async (params, { rejectWithValue }) => {
@@ -63,14 +50,12 @@ export const getUsersList = createAsyncThunk(
       };
     } catch (error) {
       const message = error.response?.data?.message || 'Error al cargar usuarios';
+      toast.error(message);
       return rejectWithValue(message);
     }
   }
 );
 
-/**
- * Fetch single user by ID
- */
 export const getUserById = createAsyncThunk(
   'users/getUserById',
   async (userId, { rejectWithValue }) => {
@@ -79,14 +64,12 @@ export const getUserById = createAsyncThunk(
       return mapUserFromApi(response.data || response);
     } catch (error) {
       const message = error.response?.data?.message || 'Error al cargar usuario';
+      toast.error(message);
       return rejectWithValue(message);
     }
   }
 );
 
-/**
- * Create new user
- */
 export const createNewUser = createAsyncThunk(
   'users/createUser',
   async (payload, { rejectWithValue }) => {
@@ -103,9 +86,6 @@ export const createNewUser = createAsyncThunk(
   }
 );
 
-/**
- * Update existing user
- */
 export const updateExistingUser = createAsyncThunk(
   'users/updateUser',
   async ({ userId, payload }, { rejectWithValue }) => {
@@ -122,9 +102,6 @@ export const updateExistingUser = createAsyncThunk(
   }
 );
 
-/**
- * Change user role
- */
 export const changeRole = createAsyncThunk(
   'users/changeRole',
   async ({ userId, role }, { rejectWithValue }) => {
@@ -141,9 +118,6 @@ export const changeRole = createAsyncThunk(
   }
 );
 
-/**
- * Block user
- */
 export const blockUserAccount = createAsyncThunk(
   'users/blockUser',
   async ({ userId, reason }, { rejectWithValue }) => {
@@ -160,9 +134,6 @@ export const blockUserAccount = createAsyncThunk(
   }
 );
 
-/**
- * Unblock user
- */
 export const unblockUserAccount = createAsyncThunk(
   'users/unblockUser',
   async (userId, { rejectWithValue }) => {
@@ -179,9 +150,6 @@ export const unblockUserAccount = createAsyncThunk(
   }
 );
 
-/**
- * Deactivate user
- */
 export const deactivateUserAccount = createAsyncThunk(
   'users/deactivateUser',
   async (userId, { rejectWithValue }) => {
@@ -198,9 +166,6 @@ export const deactivateUserAccount = createAsyncThunk(
   }
 );
 
-/**
- * Activate user
- */
 export const activateUserAccount = createAsyncThunk(
   'users/activateUser',
   async (userId, { rejectWithValue }) => {
@@ -217,9 +182,6 @@ export const activateUserAccount = createAsyncThunk(
   }
 );
 
-/**
- * Reset user password
- */
 export const resetPassword = createAsyncThunk(
   'users/resetPassword',
   async ({ userId, newPassword }, { rejectWithValue }) => {
@@ -235,9 +197,6 @@ export const resetPassword = createAsyncThunk(
   }
 );
 
-/**
- * Delete user
- */
 export const removeUser = createAsyncThunk(
   'users/deleteUser',
   async (userId, { rejectWithValue }) => {
@@ -252,8 +211,6 @@ export const removeUser = createAsyncThunk(
     }
   }
 );
-
-// Slice
 
 const usersSlice = createSlice({
   name: 'users',
@@ -277,7 +234,6 @@ const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Get users list
       .addCase(getUsersList.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -299,7 +255,6 @@ const usersSlice = createSlice({
         state.error = action.payload;
       })
 
-      // Get user by ID
       .addCase(getUserById.pending, (state) => {
         state.isLoadingDetail = true;
         state.detailError = null;
@@ -313,14 +268,12 @@ const usersSlice = createSlice({
         state.detailError = action.payload;
       })
 
-      // Create user
       .addCase(createNewUser.pending, (state) => {
         state.isSubmitting = true;
         state.submitError = null;
       })
       .addCase(createNewUser.fulfilled, (state, action) => {
         state.isSubmitting = false;
-        // Optionally add to list if on first page
         if (state.pagination.page === 1) {
           state.users.unshift(action.payload);
         }
@@ -330,19 +283,16 @@ const usersSlice = createSlice({
         state.submitError = action.payload;
       })
 
-      // Update user
       .addCase(updateExistingUser.pending, (state) => {
         state.isSubmitting = true;
         state.submitError = null;
       })
       .addCase(updateExistingUser.fulfilled, (state, action) => {
         state.isSubmitting = false;
-        // Update in list
         const index = state.users.findIndex(u => u._id === action.payload._id);
         if (index !== -1) {
           state.users[index] = action.payload;
         }
-        // Update current user if it's the same
         if (state.currentUser?._id === action.payload._id) {
           state.currentUser = action.payload;
         }
@@ -352,7 +302,6 @@ const usersSlice = createSlice({
         state.submitError = action.payload;
       })
 
-      // Change role, block, unblock, activate, deactivate - all update user
       .addCase(changeRole.fulfilled, (state, action) => {
         const index = state.users.findIndex(u => u._id === action.payload._id);
         if (index !== -1) state.users[index] = action.payload;
@@ -379,7 +328,6 @@ const usersSlice = createSlice({
         if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
       })
 
-      // Delete user
       .addCase(removeUser.fulfilled, (state, action) => {
         state.users = state.users.filter(u => u._id !== action.payload);
         if (state.currentUser?._id === action.payload) {
