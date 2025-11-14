@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchUsers } from '../api/usersApi';
 import { mapUsersFromApi } from '../utils/userMappers';
@@ -17,20 +17,22 @@ export function useUsersList() {
   const [currentAction, setCurrentAction] = useState(null); // { type, user }
 
   // Read filters from URL
-  const filters = {
+  const filters = useMemo(() => ({
     search: searchParams.get('search') || '',
     status: searchParams.get('status') || 'all',
     role: searchParams.get('role') || 'all',
-  };
+  }), [searchParams]);
 
-  const pagination = {
-    page: parseInt(searchParams.get('page') || '1', 10),
-    pageSize: parseInt(searchParams.get('pageSize') || '10', 10),
+  // Read pagination from URL
+  const page = parseInt(searchParams.get('page') || '1', 10);
+  const pageSize = parseInt(searchParams.get('pageSize') || '10', 10);
+
+  const [paginationMeta, setPaginationMeta] = useState({
+    page: 1,
+    pageSize: 10,
     total: 0,
     totalPages: 0,
-  };
-
-  const [paginationMeta, setPaginationMeta] = useState(pagination);
+  });
 
   /**
    * Update URL params
@@ -61,8 +63,8 @@ export function useUsersList() {
         search: filters.search || undefined,
         status: filters.status !== 'all' ? filters.status : undefined,
         role: filters.role !== 'all' ? filters.role : undefined,
-        page: pagination.page,
-        pageSize: pagination.pageSize,
+        page,
+        pageSize,
       };
 
       const response = await fetchUsers(params);
@@ -73,16 +75,17 @@ export function useUsersList() {
       // Update pagination meta
       if (response.meta) {
         setPaginationMeta({
-          page: response.meta.page || pagination.page,
-          pageSize: response.meta.pageSize || pagination.pageSize,
+          page: response.meta.page || page,
+          pageSize: response.meta.pageSize || pageSize,
           total: response.meta.total || mappedUsers.length,
-          totalPages: response.meta.totalPages || Math.ceil((response.meta.total || mappedUsers.length) / pagination.pageSize),
+          totalPages: response.meta.totalPages || Math.ceil((response.meta.total || mappedUsers.length) / pageSize),
         });
       } else {
         setPaginationMeta({
-          ...pagination,
+          page,
+          pageSize,
           total: mappedUsers.length,
-          totalPages: Math.ceil(mappedUsers.length / pagination.pageSize),
+          totalPages: Math.ceil(mappedUsers.length / pageSize),
         });
       }
     } catch (err) {
@@ -92,7 +95,7 @@ export function useUsersList() {
     } finally {
       setIsLoading(false);
     }
-  }, [filters.search, filters.status, filters.role, pagination.page, pagination.pageSize]);
+  }, [filters.search, filters.status, filters.role, page, pageSize]);
 
   /**
    * Load users when filters/pagination change

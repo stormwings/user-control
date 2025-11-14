@@ -24,9 +24,16 @@ const Login = () => {
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    
+    try {
+      await dispatch(login({ email, password })).unwrap();
+      // Success will be handled by useEffect
+    } catch (error) {
+      // Error will be handled by useEffect and axios interceptor
+      console.error('Login error:', error);
+    }
   };
 
   return (
