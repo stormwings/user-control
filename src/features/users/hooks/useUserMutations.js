@@ -17,16 +17,11 @@ import {
   mapUserFromApi,
 } from '../utils/userMappers';
 
-/**
- * Hook for all user mutation operations (create, update, delete, etc.)
- */
 export function useUserMutations() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  /**
-   * Create new user
-   */
+  
   const createUser = useCallback(async (formValues) => {
     setIsLoading(true);
     setError(null);
@@ -48,9 +43,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Update existing user
-   */
+  
   const updateUser = useCallback(async (userId, formValues) => {
     setIsLoading(true);
     setError(null);
@@ -72,9 +65,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Change user role
-   */
+  
   const changeRole = useCallback(async (userId, role) => {
     setIsLoading(true);
     setError(null);
@@ -95,9 +86,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Block user
-   */
+  
   const blockUser = useCallback(async (userId, reason = '') => {
     setIsLoading(true);
     setError(null);
@@ -118,9 +107,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Unblock user
-   */
+  
   const unblockUser = useCallback(async (userId) => {
     setIsLoading(true);
     setError(null);
@@ -141,9 +128,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Deactivate user
-   */
+  
   const deactivateUser = useCallback(async (userId) => {
     setIsLoading(true);
     setError(null);
@@ -164,9 +149,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Activate user
-   */
+  
   const activateUser = useCallback(async (userId) => {
     setIsLoading(true);
     setError(null);
@@ -187,9 +170,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Reset user password
-   */
+  
   const resetPassword = useCallback(async (userId, newPassword) => {
     setIsLoading(true);
     setError(null);
@@ -208,9 +189,7 @@ export function useUserMutations() {
     }
   }, []);
 
-  /**
-   * Delete user (soft delete)
-   */
+  
   const deleteUser = useCallback(async (userId) => {
     setIsLoading(true);
     setError(null);

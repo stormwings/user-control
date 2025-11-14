@@ -16,7 +16,6 @@ export const useUserFilters = (users) => {
   const filteredUsers = useMemo(() => {
     let filtered = users;
 
-    // Apply status filter
     if (filter === 'active') {
       filtered = filtered.filter((user) => !isInactive(user));
     } else if (filter === 'inactive') {
@@ -25,7 +24,6 @@ export const useUserFilters = (users) => {
       filtered = filtered.filter((user) => !!user.isAdmin);
     }
 
-    // Apply search filter
     if (searchQuery.trim()) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(

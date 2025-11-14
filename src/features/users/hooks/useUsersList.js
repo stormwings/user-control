@@ -4,26 +4,20 @@ import { fetchUsers } from '../api/usersApi';
 import { mapUsersFromApi } from '../utils/userMappers';
 import { toast } from 'react-toastify';
 
-/**
- * Hook for managing users list with filters, search, and pagination
- * Syncs state with URL params
- */
 export function useUsersList() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [currentAction, setCurrentAction] = useState(null); // { type, user }
+  const [currentAction, setCurrentAction] = useState(null);
 
-  // Read filters from URL
   const filters = useMemo(() => ({
     search: searchParams.get('search') || '',
     status: searchParams.get('status') || 'all',
     role: searchParams.get('role') || 'all',
   }), [searchParams]);
 
-  // Read pagination from URL
   const page = parseInt(searchParams.get('page') || '1', 10);
   const pageSize = parseInt(searchParams.get('pageSize') || '10', 10);
 
@@ -34,9 +28,7 @@ export function useUsersList() {
     totalPages: 0,
   });
 
-  /**
-   * Update URL params
-   */
+  
   const updateParams = useCallback((updates) => {
     const newParams = new URLSearchParams(searchParams);
 
@@ -51,9 +43,7 @@ export function useUsersList() {
     setSearchParams(newParams);
   }, [searchParams, setSearchParams]);
 
-  /**
-   * Fetch users from API
-   */
+  
   const loadUsers = useCallback(async () => {
     setIsLoading(true);
     setError(null);
@@ -72,7 +62,6 @@ export function useUsersList() {
       const mappedUsers = mapUsersFromApi(response.data || response.users || response);
       setUsers(mappedUsers);
 
-      // Update pagination meta
       if (response.meta) {
         setPaginationMeta({
           page: response.meta.page || page,
@@ -97,65 +86,47 @@ export function useUsersList() {
     }
   }, [filters.search, filters.status, filters.role, page, pageSize]);
 
-  /**
-   * Load users when filters/pagination change
-   */
+  
   useEffect(() => {
     loadUsers();
   }, [loadUsers]);
 
-  /**
-   * Update search filter
-   */
+  
   const setSearch = useCallback((search) => {
-    updateParams({ search, page: 1 }); // Reset to page 1 on search
+    updateParams({ search, page: 1 });
   }, [updateParams]);
 
-  /**
-   * Update status filter
-   */
+  
   const setStatus = useCallback((status) => {
-    updateParams({ status, page: 1 }); // Reset to page 1 on filter change
+    updateParams({ status, page: 1 });
   }, [updateParams]);
 
-  /**
-   * Update role filter
-   */
+  
   const setRole = useCallback((role) => {
-    updateParams({ role, page: 1 }); // Reset to page 1 on filter change
+    updateParams({ role, page: 1 });
   }, [updateParams]);
 
-  /**
-   * Change page
-   */
+  
   const setPage = useCallback((page) => {
     updateParams({ page });
   }, [updateParams]);
 
-  /**
-   * Change page size
-   */
+  
   const setPageSize = useCallback((pageSize) => {
-    updateParams({ pageSize, page: 1 }); // Reset to page 1 on page size change
+    updateParams({ pageSize, page: 1 });
   }, [updateParams]);
 
-  /**
-   * Open action dialog
-   */
+  
   const openAction = useCallback((type, user) => {
     setCurrentAction({ type, user });
   }, []);
 
-  /**
-   * Close action dialog
-   */
+  
   const closeAction = useCallback(() => {
     setCurrentAction(null);
   }, []);
 
-  /**
-   * Refresh users list
-   */
+  
   const refresh = useCallback(() => {
     loadUsers();
   }, [loadUsers]);

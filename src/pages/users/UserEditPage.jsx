@@ -1,14 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import useUserDetail from '../../features/users/hooks/useUserDetail';
 import useUserMutations from '../../features/users/hooks/useUserMutations';
 import UsersPageHeader from '../../features/users/components/layout/UsersPageHeader';
 import UserForm from '../../features/users/components/form/UserForm';
 import { mapUserToFormValues } from '../../features/users/utils/userMappers';
 
-/**
- * User Edit Page
- * Page for editing existing users
- */
 function UserEditPage() {
   const { userId } = useParams();
   const navigate = useNavigate();
@@ -20,8 +17,8 @@ function UserEditPage() {
       await updateUser(userId, values);
       navigate(`/dashboard/users/${userId}`);
     } catch (error) {
-      // Error is handled by useUserMutations
       console.error('Update user error:', error);
+      toast.error(error || 'Error al actualizar usuario');
     }
   };
 

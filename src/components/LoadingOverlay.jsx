@@ -1,9 +1,5 @@
 import React from 'react';
 
-/**
- * Loading Overlay Component
- * Full-screen loading indicator
- */
 const LoadingOverlay = ({ message = 'Cargando...' }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">

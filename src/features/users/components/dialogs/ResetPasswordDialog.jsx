@@ -3,9 +3,6 @@ import { FiKey, FiX } from 'react-icons/fi';
 import { Button } from '../../../../components/ui/Button';
 import useUserMutations from '../../hooks/useUserMutations';
 
-/**
- * Reset Password Dialog Component
- */
 export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -17,7 +14,6 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
 
     setError('');
 
-    // Validation
     if (!newPassword) {
       setError('La contraseña es requerida');
       return;
@@ -38,7 +34,6 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
       onSuccess?.();
       handleClose();
     } catch (error) {
-      // Error is handled by useUserMutations
     }
   };
 
@@ -58,7 +53,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
         role="dialog"
         aria-modal="true"
       >
-        {/* Header */}
+        {}
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
@@ -82,7 +77,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
           </button>
         </div>
 
-        {/* Body */}
+        {}
         <div className="px-6 pb-6 space-y-4">
           <div>
             <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
@@ -121,7 +116,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
           </p>
         </div>
 
-        {/* Footer */}
+        {}
         <div className="flex items-center justify-end gap-3 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
           <Button
             variant="ghost"

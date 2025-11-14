@@ -1,7 +1,4 @@
-/**
- * Users Page Header Component
- * Displays page title, subtitle and optional breadcrumb
- */
+
 export const UsersPageHeader = ({ title = "Gestión de Usuarios", subtitle, count }) => {
   return (
     <header className="mb-5">

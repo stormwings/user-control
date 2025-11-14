@@ -4,16 +4,13 @@ import { Button } from '../../../../components/ui/Button';
 import { UserStatusBadge } from '../list/UserStatusBadge';
 import { UserRoleBadge } from '../list/UserRoleBadge';
 
-/**
- * User Detail Header Component
- */
 export const UserDetailHeader = ({ user, onAction }) => {
   const navigate = useNavigate();
 
   return (
     <header className="mb-6">
       <div className="flex items-start justify-between gap-4">
-        {/* Left side - Back button and user info */}
+        {}
         <div className="flex-1">
           <Button
             variant="ghost"
@@ -26,12 +23,12 @@ export const UserDetailHeader = ({ user, onAction }) => {
           </Button>
 
           <div className="flex items-center gap-4">
-            {/* Avatar */}
+            {}
             <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 dark:bg-brand-hover/10 text-2xl font-semibold text-brand-primary dark:text-brand-hover">
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
 
-            {/* User info */}
+            {}
             <div>
               <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                 {user?.name || 'Usuario'}
@@ -47,7 +44,7 @@ export const UserDetailHeader = ({ user, onAction }) => {
           </div>
         </div>
 
-        {/* Right side - Actions */}
+        {}
         <div className="flex items-center gap-2">
           <Button
             variant="primary"

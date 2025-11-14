@@ -4,15 +4,10 @@ import { UserRoleBadge } from './UserRoleBadge';
 import { UserStatusBadge } from './UserStatusBadge';
 import { isUserActive, isUserBlocked } from '../../utils/userStatusHelpers';
 
-/**
- * User Row Component
- * Individual row in users table
- */
 export const UserRow = ({ user, index, onRowClick, onAction }) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
 
-  // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (menuRef.current && !menuRef.current.contains(event.target)) {
@@ -36,12 +31,12 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
       className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
       onClick={() => onRowClick?.(user._id)}
     >
-      {/* Number */}
+      {}
       <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
         #{index + 1}
       </td>
 
-      {/* User Info */}
+      {}
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 dark:bg-brand-hover/10 text-sm font-semibold text-brand-primary dark:text-brand-hover">
@@ -58,29 +53,29 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
         </div>
       </td>
 
-      {/* Role */}
+      {}
       <td className="px-4 py-3">
         <UserRoleBadge role={user.role} />
       </td>
 
-      {/* Status */}
+      {}
       <td className="px-4 py-3">
         <UserStatusBadge status={user.status} />
       </td>
 
-      {/* Branch */}
+      {}
       <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-300">
         {user.branch || '—'}
       </td>
 
-      {/* Last Login */}
+      {}
       <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
         {user.lastLoginAt
           ? new Date(user.lastLoginAt).toLocaleDateString()
           : 'Nunca'}
       </td>
 
-      {/* Actions */}
+      {}
       <td className="px-4 py-3 text-right">
         <div className="relative inline-block" ref={menuRef}>
           <button

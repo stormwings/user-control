@@ -11,10 +11,6 @@ import BlockUserDialog from '../../features/users/components/dialogs/BlockUserDi
 import DeactivateUserDialog from '../../features/users/components/dialogs/DeactivateUserDialog';
 import ResetPasswordDialog from '../../features/users/components/dialogs/ResetPasswordDialog';
 
-/**
- * Users List Page
- * Main page for displaying and managing users list
- */
 function UsersListPage() {
   const navigate = useNavigate();
 
@@ -92,7 +88,7 @@ function UsersListPage() {
         onChangePage={setPage}
       />
 
-      {/* Action Dialogs */}
+      {}
       <ChangeRoleDialog
         open={currentAction?.type === 'changeRole'}
         user={currentAction?.user}

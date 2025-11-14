@@ -6,10 +6,6 @@ import { UserRoleSelect } from './UserRoleSelect';
 import { UserStatusSelect } from './UserStatusSelect';
 import { UserRole, UserStatus } from '../../types/userTypes';
 
-/**
- * User Form Component
- * Reusable form for creating and editing users
- */
 export const UserForm = ({
   mode = 'create',
   initialValues = {},
@@ -72,7 +68,7 @@ export const UserForm = ({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Profile Information */}
+      {}
       <Card>
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
           {mode === 'create' ? 'Información del Usuario' : 'Editar Información'}
@@ -86,7 +82,7 @@ export const UserForm = ({
         />
       </Card>
 
-      {/* Role and Status */}
+      {}
       <Card>
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
           Permisos y Estado
@@ -113,7 +109,7 @@ export const UserForm = ({
         )}
       </Card>
 
-      {/* Form Actions */}
+      {}
       <div className="flex items-center justify-end gap-3">
         <Button
           type="button"

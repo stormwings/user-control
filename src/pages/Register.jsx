@@ -27,10 +27,9 @@ const Register = () => {
     
     try {
       await dispatch(registerAction({ name, email, password })).unwrap();
-      // Success will be handled by useEffect
     } catch (error) {
-      // Error will be handled by useEffect and axios interceptor
       console.error('Register error:', error);
+      toast.error(error || 'Error al registrar usuario');
     }
   };
 
