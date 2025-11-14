@@ -149,7 +149,16 @@ const AdminPanel = () => {
   } = usePagination(filteredUsers, ITEMS_PER_PAGE);
 
   useEffect(() => {
-    dispatch(allUsers());
+    const fetchAllUsers = async () => {
+      try {
+        await dispatch(allUsers()).unwrap();
+      } catch (error) {
+        console.error('Error fetching users in AdminPanel:', error);
+        // Error already handled by axios interceptor and shown via toast
+      }
+    };
+
+    fetchAllUsers();
   }, [dispatch]);
 
   const handleFilterChange = (newFilter) => {

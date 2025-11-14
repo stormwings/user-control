@@ -26,10 +26,17 @@ const SidebarLeft = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const logoutUser = () => {
-    dispatch(logout());
-    dispatch(reset());
-    navigate("/");
+  const logoutUser = async () => {
+    try {
+      await dispatch(logout()).unwrap();
+      dispatch(reset());
+      navigate("/");
+    } catch (error) {
+      console.error('Logout error:', error);
+      // Even if logout fails on server, clear local state
+      dispatch(reset());
+      navigate("/");
+    }
   };
 
   return (

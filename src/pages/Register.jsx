@@ -22,9 +22,16 @@ const Register = () => {
 
   const onChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(registerAction({ name, email, password }));
+    
+    try {
+      await dispatch(registerAction({ name, email, password })).unwrap();
+      // Success will be handled by useEffect
+    } catch (error) {
+      // Error will be handled by useEffect and axios interceptor
+      console.error('Register error:', error);
+    }
   };
 
   return (

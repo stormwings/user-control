@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { FiLock } from 'react-icons/fi';
-import { ConfirmDialog } from './ConfirmDialog';
 import useUserMutations from '../../hooks/useUserMutations';
 
 /**
