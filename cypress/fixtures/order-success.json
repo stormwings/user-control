@@ -1,0 +1,8 @@
+{
+  "id": "order-123",
+  "displayId": "ORD-20231109-001",
+  "status": "pending",
+  "totalAmount": 79.99,
+  "customer": "Test Customer",
+  "createdAt": "2023-11-09T16:15:00.000Z"
+}

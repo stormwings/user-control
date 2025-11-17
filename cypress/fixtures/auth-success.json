@@ -1,0 +1,9 @@
+{
+  "user": {
+    "_id": "user-123",
+    "id": "user-123",
+    "email": "test@example.com",
+    "name": "Test User",
+    "admin": false
+  }
+}
