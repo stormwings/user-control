@@ -1,4 +1,4 @@
-import { UserStatus, UserStatusLabels } from '../../../types/user';
+import { UserStatus, UserStatusLabels } from '../../../utils/user';
 
 export const UserStatusSelect = ({ value, onChange, disabled = false }) => {
   return (

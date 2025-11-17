@@ -1,4 +1,4 @@
-import { UserRole, UserRoleLabels } from '../../../types/user';
+import { UserRole, UserRoleLabels } from '../../../utils/user';
 
 export const UserRoleSelect = ({ value, onChange, disabled = false, required = true }) => {
   return (

@@ -1,5 +1,5 @@
 import { FiUserCheck, FiUserMinus, FiShield, FiUsers } from 'react-icons/fi';
-import { UserStatus, UserRole } from '../../../types/user';
+import { UserStatus, UserRole } from '../../../utils/user';
 import { FilterButton } from '../../common/FilterButton';
 
 export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole }) => {

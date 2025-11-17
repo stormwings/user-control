@@ -4,7 +4,7 @@ import { Button } from '../../ui/Button';
 import { UserProfileFields } from './UserProfileFields';
 import { UserRoleSelect } from './UserRoleSelect';
 import { UserStatusSelect } from './UserStatusSelect';
-import { UserRole, UserStatus } from '../../../types/user';
+import { UserRole, UserStatus } from '../../../utils/user';
 
 export const UserForm = ({
   mode = 'create',

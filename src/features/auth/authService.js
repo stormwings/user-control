@@ -1,4 +1,4 @@
-import httpRequest from '../../utils/request'
+import httpRequest from '../../utils/api'
 
 const register = async (user) => {
   try {

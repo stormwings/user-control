@@ -10,7 +10,7 @@ import {
   activateUser as apiActivateUser,
   resetUserPassword as apiResetUserPassword,
   deleteUser as apiDeleteUser,
-} from '../api/users';
+} from '../utils/users';
 import {
   mapCreateUserPayload,
   mapUpdateUserPayload,

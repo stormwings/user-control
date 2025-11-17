@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserById, fetchUserAuditLog } from '../api/users';
+import { fetchUserById, fetchUserAuditLog } from '../utils/users';
 import { mapUserFromApi } from '../utils/userMappers';
 import { toast } from 'react-toastify';
 

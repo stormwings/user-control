@@ -1,8 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { store } from './app/store';
-import { ThemeProvider } from './providers/ThemeProvider';
+import { store } from './utils/store';
+import { ThemeProvider } from './components/theme/ThemeProvider';
 import ErrorBoundary from './components/layout/ErrorBoundary';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

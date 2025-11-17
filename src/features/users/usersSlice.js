@@ -12,8 +12,8 @@ import {
   activateUser as apiActivateUser,
   resetUserPassword as apiResetUserPassword,
   deleteUser as apiDeleteUser,
-} from './api/usersApi';
-import { mapUserFromApi, mapUsersFromApi } from './utils/userMappers';
+} from '../../utils/users';
+import { mapUserFromApi, mapUsersFromApi } from '../../utils/userMappers';
 
 const initialState = {
   users: [],
