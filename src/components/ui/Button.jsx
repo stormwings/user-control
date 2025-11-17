@@ -1,7 +1,7 @@
 const buttonVariants = {
-  ghost: "border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-200",
+  ghost: "border border-gray-600 bg-gray-800 hover:bg-gray-700 text-gray-200",
   primary: "bg-[var(--blackpos-primary)] hover:bg-brand-hover text-white",
-  secondary: "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200 hover:bg-gray-200 dark:hover:bg-gray-600",
+  secondary: "bg-gray-700 text-gray-200 hover:bg-gray-600",
 };
 
 const buttonSizes = {

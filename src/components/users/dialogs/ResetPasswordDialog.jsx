@@ -49,27 +49,27 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm">
       <div
-        className="w-full max-w-md rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl"
+        className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
       >
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-100 dark:bg-amber-900/30">
-              <FiKey className="text-amber-600 dark:text-amber-400" />
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-amber-900/30">
+              <FiKey className="text-amber-400" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+              <h3 className="text-lg font-semibold text-gray-100">
                 Restablecer Contraseña
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+              <p className="text-sm text-gray-300 mt-1">
                 {user.name}
               </p>
             </div>
           </div>
           <button
             onClick={handleClose}
-            className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="rounded-lg p-1 text-gray-400 hover:bg-gray-700 transition-colors"
             disabled={isLoading}
           >
             <FiX className="text-xl" />
@@ -78,7 +78,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
 
         <div className="px-6 pb-6 space-y-4">
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            <label className="text-sm font-medium text-gray-300 mb-2 block">
               Nueva contraseña
             </label>
             <input
@@ -87,12 +87,12 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
-              className="w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover"
+              className="w-full rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-gray-100 outline-none transition-colors focus:border-brand-hover"
             />
           </div>
 
           <div>
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            <label className="text-sm font-medium text-gray-300 mb-2 block">
               Confirmar contraseña
             </label>
             <input
@@ -101,20 +101,20 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
-              className="w-full rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 px-3 py-2 text-sm text-gray-900 dark:text-gray-100 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover"
+              className="w-full rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-gray-100 outline-none transition-colors focus:border-brand-hover"
             />
           </div>
 
           {error && (
-            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+            <p className="text-sm text-red-400">{error}</p>
           )}
 
-          <p className="text-xs text-gray-500 dark:text-gray-400">
+          <p className="text-xs text-gray-400">
             Mínimo 6 caracteres
           </p>
         </div>
 
-        <div className="flex items-center justify-end gap-3 border-t border-gray-200 dark:border-gray-700 px-6 py-4">
+        <div className="flex items-center justify-end gap-3 border-t border-gray-700 px-6 py-4">
           <Button
             variant="ghost"
             onClick={handleClose}

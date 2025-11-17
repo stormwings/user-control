@@ -69,7 +69,7 @@ export const UserForm = ({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <Card>
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+        <h2 className="text-lg font-semibold text-gray-100 mb-4">
           {mode === 'create' ? 'Información del Usuario' : 'Editar Información'}
         </h2>
 
@@ -82,7 +82,7 @@ export const UserForm = ({
       </Card>
 
       <Card>
-        <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
+        <h2 className="text-lg font-semibold text-gray-100 mb-4">
           Permisos y Estado
         </h2>
 
@@ -101,7 +101,7 @@ export const UserForm = ({
         </div>
 
         {errors.role && (
-          <span className="text-xs text-red-500 dark:text-red-400 mt-2 block">
+          <span className="text-xs text-red-400 mt-2 block">
             {errors.role}
           </span>
         )}

@@ -8,40 +8,40 @@ export const UserSummaryCard = ({ user }) => {
 
       <div className="space-y-4">
         <div>
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+          <label className="text-xs font-medium text-gray-400">
             Nombre completo
           </label>
-          <p className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-sm text-gray-100">
             {user?.name || '—'}
           </p>
         </div>
 
         <div>
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
+          <label className="text-xs font-medium text-gray-400 flex items-center gap-1">
             <FiMail className="text-xs" />
             Correo electrónico
           </label>
-          <p className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-sm text-gray-100">
             {user?.email || '—'}
           </p>
         </div>
 
         <div>
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
+          <label className="text-xs font-medium text-gray-400 flex items-center gap-1">
             <FiPhone className="text-xs" />
             Teléfono
           </label>
-          <p className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-sm text-gray-100">
             {user?.phone || '—'}
           </p>
         </div>
 
         <div>
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400 flex items-center gap-1">
+          <label className="text-xs font-medium text-gray-400 flex items-center gap-1">
             <FiMapPin className="text-xs" />
             Sucursal
           </label>
-          <p className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-sm text-gray-100">
             {user?.branch || '—'}
           </p>
         </div>

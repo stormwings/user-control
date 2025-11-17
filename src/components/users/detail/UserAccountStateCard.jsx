@@ -10,18 +10,18 @@ export const UserAccountStateCard = ({ user, onAction }) => {
 
       <div className="space-y-4">
         <div>
-          <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+          <label className="text-xs font-medium text-gray-400">
             Estado actual
           </label>
-          <p className="mt-1 text-sm text-gray-900 dark:text-gray-100">
+          <p className="mt-1 text-sm text-gray-100">
             {isUserActive(user) && 'La cuenta está activa y operativa'}
             {isUserBlocked(user) && 'La cuenta está bloqueada y no puede acceder'}
             {isUserInactive(user) && !isUserBlocked(user) && 'La cuenta está desactivada'}
           </p>
         </div>
 
-        <div className="space-y-2 pt-2 border-t border-gray-200 dark:border-gray-700">
-          <p className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3">
+        <div className="space-y-2 pt-2 border-t border-gray-700">
+          <p className="text-xs font-medium text-gray-400 mb-3">
             Acciones rápidas
           </p>
 
@@ -41,7 +41,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 variant="ghost"
                 size="sm"
                 onClick={() => onAction?.('block', user)}
-                className="justify-start text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20"
+                className="justify-start text-red-400 hover:bg-red-900/20"
               >
                 <FiLock />
                 <span>Bloquear cuenta</span>
@@ -53,7 +53,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 variant="ghost"
                 size="sm"
                 onClick={() => onAction?.('unblock', user)}
-                className="justify-start text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20"
+                className="justify-start text-green-400 hover:bg-green-900/20"
               >
                 <FiUnlock />
                 <span>Desbloquear cuenta</span>
@@ -65,7 +65,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 variant="ghost"
                 size="sm"
                 onClick={() => onAction?.('deactivate', user)}
-                className="justify-start text-amber-600 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-900/20"
+                className="justify-start text-amber-400 hover:bg-amber-900/20"
               >
                 <FiUserMinus />
                 <span>Desactivar cuenta</span>
@@ -77,7 +77,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 variant="ghost"
                 size="sm"
                 onClick={() => onAction?.('activate', user)}
-                className="justify-start text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20"
+                className="justify-start text-green-400 hover:bg-green-900/20"
               >
                 <FiUserCheck />
                 <span>Activar cuenta</span>
