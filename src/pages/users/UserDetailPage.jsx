@@ -1,15 +1,15 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import useUserDetail from '../../features/users/hooks/useUserDetail';
-import UserDetailHeader from '../../features/users/components/detail/UserDetailHeader';
-import UserSummaryCard from '../../features/users/components/detail/UserSummaryCard';
-import UserAccountStateCard from '../../features/users/components/detail/UserAccountStateCard';
-import UserMetaInfo from '../../features/users/components/detail/UserMetaInfo';
-import UserAuditMiniList from '../../features/users/components/detail/UserAuditMiniList';
-import ChangeRoleDialog from '../../features/users/components/dialogs/ChangeRoleDialog';
-import BlockUserDialog from '../../features/users/components/dialogs/BlockUserDialog';
-import DeactivateUserDialog from '../../features/users/components/dialogs/DeactivateUserDialog';
-import ResetPasswordDialog from '../../features/users/components/dialogs/ResetPasswordDialog';
+import useUserDetail from '../../hooks/useUserDetail';
+import UserDetailHeader from '../../components/users/detail/UserDetailHeader';
+import UserSummaryCard from '../../components/users/detail/UserSummaryCard';
+import UserAccountStateCard from '../../components/users/detail/UserAccountStateCard';
+import UserMetaInfo from '../../components/users/detail/UserMetaInfo';
+import UserAuditMiniList from '../../components/users/detail/UserAuditMiniList';
+import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
+import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
+import DeactivateUserDialog from '../../components/users/dialogs/DeactivateUserDialog';
+import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
 
 function UserDetailPage() {
   const { userId } = useParams();

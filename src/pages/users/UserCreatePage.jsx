@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import UsersPageHeader from '../../features/users/components/layout/UsersPageHeader';
-import UserForm from '../../features/users/components/form/UserForm';
-import useUserMutations from '../../features/users/hooks/useUserMutations';
+import UsersPageHeader from '../../components/users/layout/UsersPageHeader';
+import UserForm from '../../components/users/form/UserForm';
+import useUserMutations from '../../hooks/useUserMutations';
 
 function UserCreatePage() {
   const navigate = useNavigate();

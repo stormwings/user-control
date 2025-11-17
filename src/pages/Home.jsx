@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import ThemeToggleButton from "../components/ThemeToggleButton";
+// import ThemeToggleButton from "../components/theme/ThemeToggleButton";
 
 const Home = () => {
   return (
@@ -13,9 +13,9 @@ const Home = () => {
         </a>
         <nav>
           <ul className="flex items-center gap-4">
-            <li>
+            {/* <li>
               <ThemeToggleButton />
-            </li>
+            </li> */}
             <li>
               <Link
                 to="/login"
@@ -27,16 +27,6 @@ const Home = () => {
           </ul>
         </nav>
       </header>
-
-      <div>
-        <h1 className="absolute left-4 top-[30%] text-[72px] md:text-[100px] leading-none text-brand-text dark:text-gray-200 font-f4">
-          User <span className="text-brand-primary dark:text-brand-hover">Control</span>
-        </h1>
-
-        <p className="absolute left-4 top-[48%] max-w-[800px] text-[20px] md:text-[24px] leading-8 text-brand-text dark:text-gray-300 font-f2">
-          - Cuentas para sucursal. <br />
-        </p>
-      </div>
     </section>
   );
 };

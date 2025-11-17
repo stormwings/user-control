@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register as registerAction, reset } from "../features/auth/authSlice";
-import ThemeToggleButton from "../components/ThemeToggleButton";
+// import ThemeToggleButton from "../components/theme/ThemeToggleButton";
 
 const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });
@@ -35,7 +35,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen w-full bg-[var(--bg-Color)] flex items-start md:items-center justify-center p-4 pt-10">
-      <ThemeToggleButton className="fixed top-4 right-4" />
+      {/* <ThemeToggleButton className="fixed top-4 right-4" /> */}
       <form
         onSubmit={handleSubmit}
         className="w-[400px] max-w-full rounded-xl bg-white dark:bg-gray-800 p-12 pt-12 shadow-[0_12px_32px_rgba(0,0,0,.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,.4)] transition-colors"

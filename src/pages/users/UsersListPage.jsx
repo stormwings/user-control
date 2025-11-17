@@ -1,15 +1,15 @@
 import { useNavigate } from 'react-router-dom';
-import useUsersList from '../../features/users/hooks/useUsersList';
-import UsersPageHeader from '../../features/users/components/layout/UsersPageHeader';
-import UsersToolbar from '../../features/users/components/layout/UsersToolbar';
-import UsersSearchInput from '../../features/users/components/layout/UsersSearchInput';
-import UsersFilterChips from '../../features/users/components/layout/UsersFilterChips';
-import UsersTable from '../../features/users/components/list/UsersTable';
-import UsersPagination from '../../features/users/components/layout/UsersPagination';
-import ChangeRoleDialog from '../../features/users/components/dialogs/ChangeRoleDialog';
-import BlockUserDialog from '../../features/users/components/dialogs/BlockUserDialog';
-import DeactivateUserDialog from '../../features/users/components/dialogs/DeactivateUserDialog';
-import ResetPasswordDialog from '../../features/users/components/dialogs/ResetPasswordDialog';
+import useUsersList from '../../hooks/useUsersList';
+import UsersPageHeader from '../../components/users/layout/UsersPageHeader';
+import UsersToolbar from '../../components/users/layout/UsersToolbar';
+import UsersSearchInput from '../../components/users/layout/UsersSearchInput';
+import UsersFilterChips from '../../components/users/layout/UsersFilterChips';
+import UsersTable from '../../components/users/list/UsersTable';
+import UsersPagination from '../../components/users/layout/UsersPagination';
+import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
+import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
+import DeactivateUserDialog from '../../components/users/dialogs/DeactivateUserDialog';
+import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
 
 function UsersListPage() {
   const navigate = useNavigate();

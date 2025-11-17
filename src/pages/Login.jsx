@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../features/auth/authSlice";
-import ThemeToggleButton from "../components/ThemeToggleButton";
+// import ThemeToggleButton from "../components/theme/ThemeToggleButton";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -44,7 +44,7 @@ const Login = () => {
       "
       data-testid="login-page"
     >
-      <ThemeToggleButton className="fixed top-4 right-4" />
+      {/* <ThemeToggleButton className="fixed top-4 right-4" /> */}
       <form
         onSubmit={handleSubmit}
         aria-label="Formulario de ingreso"
