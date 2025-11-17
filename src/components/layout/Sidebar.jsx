@@ -3,7 +3,6 @@ import { FaBox, FaUserCircle, FaSignInAlt, FaUsers } from "react-icons/fa";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { logout, reset } from "../../features/auth/authSlice";
-// import ThemeToggle from "../theme/ThemeToggle";
 
 const Item = ({ to, icon: Icon, label }) => (
   <Link

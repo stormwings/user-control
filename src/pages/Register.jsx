@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { register as registerAction, reset } from "../features/auth/authSlice";
-// import ThemeToggleButton from "../components/theme/ThemeToggleButton";
 
 const Register = () => {
   const [form, setForm] = useState({ name: "", email: "", password: "" });

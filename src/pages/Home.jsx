@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import ThemeToggleButton from "../components/theme/ThemeToggleButton";
 
 const Home = () => {
   return (

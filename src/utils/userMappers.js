@@ -15,7 +15,6 @@ export function mapUsersFromApi(apiUsers) {
   return apiUsers.map(mapUserFromApi);
 }
 
-// Mapear status del backend (lowercase) al frontend (UPPERCASE)
 export function mapStatusFromBackend(backendStatus) {
   if (!backendStatus) return UserStatus.ACTIVE;
 
@@ -29,9 +28,7 @@ export function mapStatusFromBackend(backendStatus) {
   return statusMap[backendStatus.toLowerCase()] || UserStatus.ACTIVE;
 }
 
-// Mapear role del backend (lowercase) al frontend (UPPERCASE)
 export function mapRoleFromBackend(backendRole, isAdmin) {
-  // Priorizar isAdmin si está presente (retrocompatibilidad)
   if (isAdmin) return UserRole.ADMIN;
 
   if (!backendRole) return UserRole.SELLER;
@@ -46,7 +43,6 @@ export function mapRoleFromBackend(backendRole, isAdmin) {
   return roleMap[backendRole.toLowerCase()] || UserRole.SELLER;
 }
 
-// Función legacy mantenida para retrocompatibilidad
 export function determineUserStatus(user) {
   if (user.status) return mapStatusFromBackend(user.status);
   if (user.blocked) return UserStatus.BLOCKED;
