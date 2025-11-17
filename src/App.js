@@ -8,7 +8,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Content from "./pages/Content";
 import NotFound from "./pages/NotFound";
-import PrivateRoute from "./pages/PrivateRoute";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 import UsersListPage from "./pages/users/UsersListPage";
 import UserCreatePage from "./pages/users/UserCreatePage";
