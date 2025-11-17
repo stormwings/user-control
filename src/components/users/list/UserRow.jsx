@@ -28,6 +28,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
 
   return (
     <tr
+      data-cy="users-table-row"
       className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
       onClick={() => onRowClick?.(user._id)}
     >
@@ -76,6 +77,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
               e.stopPropagation();
               setShowMenu(!showMenu);
             }}
+            data-cy="user-row-actions-button"
             className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             title="Más acciones"
           >
@@ -83,12 +85,13 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
           </button>
 
           {showMenu && (
-            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg py-1">
+            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg py-1" data-cy="user-row-actions-menu">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleAction('view');
                 }}
+                data-cy="user-action-view"
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <FiEye /> Ver detalle
@@ -99,6 +102,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('edit');
                 }}
+                data-cy="user-action-edit"
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <FiEdit /> Editar
@@ -109,6 +113,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('changeRole');
                 }}
+                data-cy="user-action-change-role"
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <FiShield /> Cambiar rol
@@ -122,6 +127,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     e.stopPropagation();
                     handleAction('block');
                   }}
+                  data-cy="user-action-block"
                   className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                 >
                   <FiLock /> Bloquear
@@ -134,6 +140,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     e.stopPropagation();
                     handleAction('unblock');
                   }}
+                  data-cy="user-action-unblock"
                   className="flex w-full items-center gap-2 px-4 py-2 text-sm text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
                 >
                   <FiUnlock /> Desbloquear
@@ -145,6 +152,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('resetPassword');
                 }}
+                data-cy="user-action-reset-password"
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
               >
                 <FiKey /> Restablecer contraseña

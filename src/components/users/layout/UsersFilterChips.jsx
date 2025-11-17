@@ -4,13 +4,14 @@ import { FilterButton } from '../../common/FilterButton';
 
 export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole }) => {
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2" data-cy="users-filter-chips">
       <div className="flex items-center gap-2">
         <FilterButton
           active={status === UserStatus.ACTIVE}
           onClick={() => onChangeStatus(UserStatus.ACTIVE)}
           icon={FiUserCheck}
           title="Usuarios activos"
+          data-cy="filter-status-active"
         >
           Activos
         </FilterButton>
@@ -20,6 +21,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeStatus(UserStatus.INACTIVE)}
           icon={FiUserMinus}
           title="Usuarios inactivos"
+          data-cy="filter-status-inactive"
         >
           Inactivos
         </FilterButton>
@@ -31,6 +33,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeRole(UserRole.ADMIN)}
           icon={FiShield}
           title="Solo administradores"
+          data-cy="filter-role-admin"
         >
           Admin
         </FilterButton>
@@ -40,6 +43,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeRole(UserRole.SELLER)}
           icon={FiUsers}
           title="Solo usuarios regulares"
+          data-cy="filter-role-user"
         >
           Usuario
         </FilterButton>
@@ -53,6 +57,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
             onChangeRole('all');
           }}
           title="Mostrar todos"
+          data-cy="filter-clear-all"
         >
           Todos
         </FilterButton>

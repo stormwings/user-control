@@ -8,7 +8,7 @@ export const UsersToolbar = ({
   showFilters = true,
 }) => {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-3">
+    <div className="flex flex-wrap items-center justify-between gap-3" data-cy="users-toolbar">
       <div className="flex items-center gap-2">
         {onCreateUser && (
           <Button
@@ -16,6 +16,7 @@ export const UsersToolbar = ({
             size="md"
             onClick={onCreateUser}
             className="gap-2"
+            data-cy="users-create-button"
           >
             <FiUserPlus className="text-lg" />
             <span>Nuevo Usuario</span>
@@ -30,6 +31,7 @@ export const UsersToolbar = ({
             size="md"
             onClick={onToggleFilters}
             title="Mostrar/ocultar filtros"
+            data-cy="users-toggle-filters-button"
           >
             <FiFilter className="text-lg" />
           </Button>
@@ -41,6 +43,7 @@ export const UsersToolbar = ({
             size="md"
             onClick={onExport}
             title="Exportar lista"
+            data-cy="users-export-button"
           >
             <FiDownload className="text-lg" />
             <span className="hidden sm:inline">Exportar</span>

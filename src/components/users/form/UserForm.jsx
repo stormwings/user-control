@@ -67,7 +67,7 @@ export const UserForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" data-cy="user-form">
       <Card>
         <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-4">
           {mode === 'create' ? 'Información del Usuario' : 'Editar Información'}
@@ -113,6 +113,7 @@ export const UserForm = ({
           variant="ghost"
           onClick={onCancel}
           disabled={isLoading}
+          data-cy="user-form-cancel-button"
         >
           Cancelar
         </Button>
@@ -121,6 +122,7 @@ export const UserForm = ({
           type="submit"
           variant="primary"
           disabled={isLoading}
+          data-cy="user-form-submit-button"
         >
           {isLoading
             ? (mode === 'create' ? 'Creando...' : 'Guardando...')

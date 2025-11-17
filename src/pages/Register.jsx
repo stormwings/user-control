@@ -38,6 +38,7 @@ const Register = () => {
       {/* <ThemeToggleButton className="fixed top-4 right-4" /> */}
       <form
         onSubmit={handleSubmit}
+        data-cy="register-form"
         className="w-[400px] max-w-full rounded-xl bg-white dark:bg-gray-800 p-12 pt-12 shadow-[0_12px_32px_rgba(0,0,0,.12)] dark:shadow-[0_12px_32px_rgba(0,0,0,.4)] transition-colors"
         aria-label="Formulario de registro"
       >
@@ -60,6 +61,7 @@ const Register = () => {
             value={name}
             onChange={onChange}
             required
+            data-cy="register-input-name"
             className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
@@ -80,6 +82,7 @@ const Register = () => {
             onChange={onChange}
             autoComplete="username"
             required
+            data-cy="register-input-email"
             className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
@@ -101,6 +104,7 @@ const Register = () => {
             autoComplete="new-password"
             required
             minLength={6}
+            data-cy="register-input-password"
             className="mt-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 outline-none transition-colors focus:border-brand-primary dark:focus:border-brand-hover focus:bg-white dark:focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(60,71,135,0.15)] dark:focus:ring-[rgba(64,153,175,0.15)]"
           />
         </div>
@@ -108,6 +112,7 @@ const Register = () => {
         <button
           type="submit"
           disabled={isLoading}
+          data-cy="register-submit-button"
           className="w-full rounded-full bg-brand-primary dark:bg-brand-hover px-4 py-3 font-bold text-white shadow-[0_6px_16px_rgba(60,71,135,.25)] dark:shadow-[0_6px_16px_rgba(64,153,175,.25)] transition active:translate-y-[1px] hover:bg-brand-hover dark:hover:bg-opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
         >
           {isLoading ? "Creando..." : "Registrarse"}
@@ -116,6 +121,7 @@ const Register = () => {
         <div className="mt-4 text-center">
           <Link
             to="/"
+            data-cy="register-back-home-link"
             className="font-medium text-brand-primary dark:text-brand-hover hover:text-brand-hover dark:hover:text-opacity-80"
           >
             Volver al inicio
