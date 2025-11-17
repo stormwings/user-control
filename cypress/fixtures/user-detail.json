@@ -1,0 +1,12 @@
+{
+  "_id": "user-001",
+  "name": "Juan Pérez",
+  "email": "juan.perez@example.com",
+  "role": "ADMIN",
+  "status": "ACTIVE",
+  "phone": "+5491123456789",
+  "branch": "Casa Central",
+  "lastLoginAt": "2024-01-15T10:30:00.000Z",
+  "createdAt": "2023-06-01T08:00:00.000Z",
+  "updatedAt": "2024-01-15T10:30:00.000Z"
+}

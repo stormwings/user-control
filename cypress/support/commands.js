@@ -1,23 +1,17 @@
 /* eslint-disable no-undef */
 // ============================================================================
-// Custom Commands for E2E Testing
+// Custom Commands for E2E Testing - User Control System
 // ============================================================================
 
 /**
  * Login via UI
  * @param {string} email - User email
  * @param {string} password - User password
- * @param {boolean} remember - Remember me checkbox
  */
-Cypress.Commands.add("loginUI", (email, password, remember = true) => {
+Cypress.Commands.add("loginUI", (email, password) => {
   cy.visit("/login");
   cy.get('[data-cy="login-input-email"]').clear().type(email);
   cy.get('[data-cy="login-input-password"]').clear().type(password);
-  
-  if (!remember) {
-    cy.get('[data-cy="login-remember-checkbox"]').uncheck();
-  }
-  
   cy.get('[data-cy="login-submit-button"]').click();
 });
 
@@ -29,7 +23,8 @@ Cypress.Commands.add("loginByLocalStorage", (user = {}) => {
   const defaultUser = {
     email: "test@example.com",
     name: "Test User",
-    admin: false,
+    role: "SELLER",
+    status: "ACTIVE",
     _id: "test-user-id",
     id: "test-user-id"
   };
@@ -44,78 +39,166 @@ Cypress.Commands.add("loginByLocalStorage", (user = {}) => {
 });
 
 /**
- * Logout via UI
+ * Login as admin user
  */
-Cypress.Commands.add("logoutUI", () => {
-  // Assuming there's a logout button in the header
-  cy.get('[data-cy="logout-button"]').click();
-});
-
-/**
- * Add product to cart by clicking on product card
- * @param {number} productIndex - Index of the product in the grid (0-based)
- */
-Cypress.Commands.add("addProductToCart", (productIndex = 0) => {
-  cy.get('[data-cy="product-grid"]')
-    .find('[data-cy="product-card"]')
-    .eq(productIndex)
-    .find('[data-cy="product-add-to-cart"]')
-    .click();
-});
-
-/**
- * Open the shopping cart sidebar
- */
-Cypress.Commands.add("openCart", () => {
-  cy.get('[data-cy="header-cart-button"]').click();
-  cy.get('[data-cy="sidebar"]').should('be.visible');
-});
-
-/**
- * Close the shopping cart sidebar
- */
-Cypress.Commands.add("closeCart", () => {
-  cy.get('[data-cy="sidebar-close-button"]').click();
-});
-
-/**
- * Clear all items from cart
- */
-Cypress.Commands.add("clearCart", () => {
-  cy.window().then((win) => {
-    win.localStorage.removeItem("cart");
+Cypress.Commands.add("loginAsAdmin", () => {
+  cy.loginByLocalStorage({
+    email: "admin@example.com",
+    name: "Admin User",
+    role: "ADMIN",
+    status: "ACTIVE",
   });
 });
 
 /**
- * Search for products
+ * Logout via clearing localStorage
+ */
+Cypress.Commands.add("logout", () => {
+  cy.window().then((win) => {
+    win.localStorage.removeItem("user");
+  });
+  cy.visit("/login");
+});
+
+/**
+ * Navigate to users list page
+ */
+Cypress.Commands.add("goToUsersList", () => {
+  cy.visit("/dashboard/users");
+});
+
+/**
+ * Search for users
  * @param {string} searchTerm - Search term
  */
-Cypress.Commands.add("searchProducts", (searchTerm) => {
-  cy.get('[data-cy="search-input"]').clear().type(searchTerm);
+Cypress.Commands.add("searchUsers", (searchTerm) => {
+  cy.get('[data-cy="users-search-input"]').clear().type(searchTerm);
 });
 
 /**
- * Clear search
+ * Clear user search
  */
-Cypress.Commands.add("clearSearch", () => {
-  cy.get('[data-cy="search-clear-button"]').click();
+Cypress.Commands.add("clearUserSearch", () => {
+  cy.get('[data-cy="users-search-input"]').clear();
 });
 
 /**
- * Wait for products to load
+ * Filter users by status
+ * @param {string} status - User status (ACTIVE, INACTIVE)
  */
-Cypress.Commands.add("waitForProducts", () => {
-  cy.get('[data-cy="product-grid"]', { timeout: 10000 }).should('be.visible');
+Cypress.Commands.add("filterUsersByStatus", (status) => {
+  if (status === "ACTIVE") {
+    cy.get('[data-cy="filter-status-active"]').click();
+  } else if (status === "INACTIVE") {
+    cy.get('[data-cy="filter-status-inactive"]').click();
+  }
 });
 
 /**
- * Intercept API calls for products
+ * Filter users by role
+ * @param {string} role - User role (ADMIN, SELLER)
  */
-Cypress.Commands.add("interceptProducts", (fixture = "products") => {
-  cy.intercept("GET", "**/api/product/public/vip*", {
-    fixture: fixture
-  }).as("getProducts");
+Cypress.Commands.add("filterUsersByRole", (role) => {
+  if (role === "ADMIN") {
+    cy.get('[data-cy="filter-role-admin"]').click();
+  } else if (role === "SELLER") {
+    cy.get('[data-cy="filter-role-user"]').click();
+  }
+});
+
+/**
+ * Clear all filters
+ */
+Cypress.Commands.add("clearAllFilters", () => {
+  cy.get('[data-cy="filter-clear-all"]').click();
+});
+
+/**
+ * Open create user page
+ */
+Cypress.Commands.add("openCreateUserPage", () => {
+  cy.get('[data-cy="users-create-button"]').click();
+});
+
+/**
+ * Fill user form
+ * @param {Object} userData - User data object
+ */
+Cypress.Commands.add("fillUserForm", (userData) => {
+  const defaultData = {
+    name: "Test User",
+    email: "testuser@example.com",
+    password: "password123",
+    phone: "+1234567890",
+    branch: "Branch 1",
+    role: "SELLER",
+    status: "ACTIVE",
+  };
+  
+  const data = { ...defaultData, ...userData };
+  
+  if (data.name) {
+    cy.get('[data-cy="user-form-input-name"]').clear().type(data.name);
+  }
+  if (data.email) {
+    cy.get('[data-cy="user-form-input-email"]').clear().type(data.email);
+  }
+  if (data.password) {
+    cy.get('[data-cy="user-form-input-password"]').clear().type(data.password);
+  }
+  if (data.phone) {
+    cy.get('[data-cy="user-form-input-phone"]').clear().type(data.phone);
+  }
+  if (data.branch) {
+    cy.get('[data-cy="user-form-input-branch"]').clear().type(data.branch);
+  }
+  if (data.role) {
+    cy.get('[data-cy="user-form-select-role"]').select(data.role);
+  }
+  // Status is only available in edit mode
+  if (data.status && cy.get('[data-cy="user-form-select-status"]').should('exist')) {
+    cy.get('[data-cy="user-form-select-status"]').select(data.status);
+  }
+});
+
+/**
+ * Submit user form
+ */
+Cypress.Commands.add("submitUserForm", () => {
+  cy.get('[data-cy="user-form-submit-button"]').click();
+});
+
+/**
+ * Cancel user form
+ */
+Cypress.Commands.add("cancelUserForm", () => {
+  cy.get('[data-cy="user-form-cancel-button"]').click();
+});
+
+/**
+ * Wait for users table to load
+ */
+Cypress.Commands.add("waitForUsersTable", () => {
+  cy.get('[data-cy="users-table"]', { timeout: 10000 }).should('be.visible');
+});
+
+/**
+ * Open user actions menu
+ * @param {number} rowIndex - Index of the user row (0-based)
+ */
+Cypress.Commands.add("openUserActionsMenu", (rowIndex = 0) => {
+  cy.get('[data-cy="users-table-row"]')
+    .eq(rowIndex)
+    .find('[data-cy="user-row-actions-button"]')
+    .click();
+});
+
+/**
+ * Click user action from menu
+ * @param {string} action - Action type (view, edit, changeRole, block, unblock, resetPassword)
+ */
+Cypress.Commands.add("clickUserAction", (action) => {
+  cy.get(`[data-cy="user-action-${action}"]`).click();
 });
 
 /**
@@ -123,43 +206,21 @@ Cypress.Commands.add("interceptProducts", (fixture = "products") => {
  */
 Cypress.Commands.add("interceptAuth", () => {
   cy.intercept("POST", "**/api/auth/login").as("loginRequest");
+  cy.intercept("POST", "**/api/auth/register").as("registerRequest");
   cy.intercept("POST", "**/api/auth/logout").as("logoutRequest");
   cy.intercept("GET", "**/api/auth/me").as("meRequest");
 });
 
 /**
- * Intercept API calls for orders
+ * Intercept API calls for users
  */
-Cypress.Commands.add("interceptOrders", () => {
-  cy.intercept("POST", "**/api/order/public").as("createOrder");
-});
-
-/**
- * Fill checkout form
- * @param {Object} formData - Form data object
- */
-Cypress.Commands.add("fillCheckoutForm", (formData) => {
-  const defaultData = {
-    name: "Test Customer",
-    email: "customer@example.com",
-    phone: "1234567890",
-    docType: "DNI",
-    docNumber: "12345678",
-    taxCondition: "CF",
-    province: "Buenos Aires",
-    zipcode: "1000",
-    notes: "Test order"
-  };
-  
-  const data = { ...defaultData, ...formData };
-  
-  if (data.name) cy.get('[name="name"]').clear().type(data.name);
-  if (data.email) cy.get('[name="email"]').clear().type(data.email);
-  if (data.phone) cy.get('[name="phone"]').clear().type(data.phone);
-  if (data.docType) cy.get('[name="docType"]').clear().type(data.docType);
-  if (data.docNumber) cy.get('[name="docNumber"]').clear().type(data.docNumber);
-  if (data.taxCondition) cy.get('[name="taxCondition"]').clear().type(data.taxCondition);
-  if (data.province) cy.get('[name="province"]').clear().type(data.province);
-  if (data.zipcode) cy.get('[name="zipcode"]').clear().type(data.zipcode);
-  if (data.notes) cy.get('[name="notes"]').clear().type(data.notes);
+Cypress.Commands.add("interceptUsers", () => {
+  cy.intercept("GET", "**/api/users*").as("getUsers");
+  cy.intercept("GET", "**/api/users/*").as("getUser");
+  cy.intercept("POST", "**/api/users").as("createUser");
+  cy.intercept("PUT", "**/api/users/*").as("updateUser");
+  cy.intercept("PATCH", "**/api/users/*/role").as("changeRole");
+  cy.intercept("PATCH", "**/api/users/*/block").as("blockUser");
+  cy.intercept("PATCH", "**/api/users/*/unblock").as("unblockUser");
+  cy.intercept("POST", "**/api/users/*/reset-password").as("resetPassword");
 });

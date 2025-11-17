@@ -11,7 +11,7 @@ export const UsersTable = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800" data-cy="users-table-loading">
         <div className="flex items-center justify-center py-12">
           <div className="flex flex-col items-center gap-3">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 dark:border-gray-700 border-t-brand-primary dark:border-t-brand-hover"></div>
@@ -26,14 +26,14 @@ export const UsersTable = ({
 
   if (!users || users.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800">
+      <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden bg-white dark:bg-gray-800" data-cy="users-table-empty">
         <UsersEmptyState />
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
+    <div className="rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden" data-cy="users-table">
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
           <UsersTableHeader />

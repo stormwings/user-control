@@ -1,0 +1,15 @@
+{
+  "success": true,
+  "message": "Usuario creado exitosamente",
+  "user": {
+    "_id": "user-new-001",
+    "name": "Nuevo Usuario",
+    "email": "nuevo.usuario@example.com",
+    "role": "SELLER",
+    "status": "ACTIVE",
+    "phone": "+5491167890123",
+    "branch": "Sucursal Central",
+    "createdAt": "2024-01-16T09:00:00.000Z",
+    "updatedAt": "2024-01-16T09:00:00.000Z"
+  }
+}

@@ -1,41 +1,54 @@
-# Cypress E2E Testing Documentation
+# Cypress E2E Testing Documentation - User Control System
 
-This directory contains comprehensive end-to-end tests for the ecommerce-lite-frontend application.
+This directory contains comprehensive end-to-end tests for the User Control (User Management) application.
 
 ## Overview
 
-The test suite covers all major user flows and edge cases:
+The test suite covers all major user management flows and edge cases:
 
 1. **Authentication Flow** (`01-auth.cy.js`)
    - Login with valid/invalid credentials
    - Form validation
    - Session management
    - Protected routes
-   - Session expiration
+   - Registration flow
+   - Logout functionality
 
-2. **Product Browsing Flow** (`02-products.cy.js`)
-   - Product grid display
-   - Product search
-   - Load more products
-   - Product details
-   - Empty states
-
-3. **Shopping Cart Flow** (`03-cart.cy.js`)
-   - Add/remove products
-   - Update quantities
-   - Cart persistence
-   - Cart sidebar navigation
-
-4. **Checkout Flow** (`04-checkout.cy.js`)
-   - Form validation
-   - Order submission
+2. **Users List Flow** (`02-users-list.cy.js`)
+   - Users table display
+   - Search functionality
+   - Filter by status (Active/Inactive)
+   - Filter by role (Admin/User)
+   - Pagination
+   - User row actions
    - Error handling
-   - Order confirmation
 
-5. **Complete User Journey** (`05-complete-journey.cy.js`)
-   - End-to-end flows
-   - Error recovery
-   - Multiple purchase cycles
+3. **User Creation Flow** (`03-user-create.cy.js`)
+   - Form display and validation
+   - Required field validation
+   - Email format validation
+   - Password length validation
+   - Role selection
+   - Success/error handling
+
+4. **User Edit Flow** (`04-user-edit.cy.js`)
+   - Pre-filled form display
+   - Update user information
+   - Change user role
+   - Change user status
+   - Form validation
+   - Cancel editing
+
+5. **User Actions Flow** (`05-user-actions.cy.js`)
+   - Change role dialog
+   - Block/unblock user
+   - Reset password
+   - Deactivate user
+
+6. **Complete Journey** (`06-complete-journey.cy.js`)
+   - Full user lifecycle workflows
+   - Search and filter workflows
+   - Error recovery scenarios
    - Session persistence
 
 ## Running Tests
@@ -53,7 +66,7 @@ npm install
 Open Cypress Test Runner for development:
 
 ```bash
-npm run test:e2e:open
+npx cypress open
 ```
 
 This will open the Cypress UI where you can:
@@ -67,7 +80,7 @@ This will open the Cypress UI where you can:
 Run all tests in CI/CD mode:
 
 ```bash
-npm run test:e2e:run
+npx cypress run
 ```
 
 This command:
@@ -95,24 +108,45 @@ npx cypress run --browser edge
 
 Located in `cypress/support/commands.js`, these commands simplify common operations:
 
-- `cy.loginUI(email, password, remember)` - Login via UI
+**Authentication:**
+- `cy.loginUI(email, password)` - Login via UI
 - `cy.loginByLocalStorage(user)` - Login by setting localStorage
-- `cy.addProductToCart(index)` - Add product to cart
-- `cy.openCart()` - Open cart sidebar
-- `cy.searchProducts(term)` - Search for products
-- `cy.fillCheckoutForm(data)` - Fill checkout form
-- `cy.interceptProducts(fixture)` - Mock product API
+- `cy.loginAsAdmin()` - Login as admin user
+- `cy.logout()` - Logout and clear session
+
+**Navigation:**
+- `cy.goToUsersList()` - Navigate to users list page
+- `cy.openCreateUserPage()` - Open create user page
+
+**Search & Filter:**
+- `cy.searchUsers(term)` - Search for users
+- `cy.clearUserSearch()` - Clear search input
+- `cy.filterUsersByStatus(status)` - Filter by status
+- `cy.filterUsersByRole(role)` - Filter by role
+- `cy.clearAllFilters()` - Clear all filters
+
+**Forms:**
+- `cy.fillUserForm(data)` - Fill user form
+- `cy.submitUserForm()` - Submit user form
+- `cy.cancelUserForm()` - Cancel user form
+
+**Actions:**
+- `cy.openUserActionsMenu(rowIndex)` - Open user actions menu
+- `cy.clickUserAction(action)` - Click user action
+- `cy.waitForUsersTable()` - Wait for users table to load
+
+**API Mocking:**
 - `cy.interceptAuth()` - Mock authentication API
-- `cy.interceptOrders()` - Mock order API
+- `cy.interceptUsers()` - Mock users API
 
 ### Fixtures
 
 Test data is stored in `cypress/fixtures/`:
 
-- `products.json` - Sample product data
 - `auth-success.json` - Successful authentication response
-- `auth-error.json` - Failed authentication response
-- `order-success.json` - Successful order response
+- `users.json` - List of users with different roles/statuses
+- `user-detail.json` - Single user details
+- `user-create-success.json` - Successful user creation response
 
 ## Test Configuration
 
@@ -123,15 +157,12 @@ Configuration is in `cypress.config.js`:
   baseUrl: "http://localhost:3000",
   video: true,
   chromeWebSecurity: false,
-  retries: { runMode: 2, openMode: 0 }
+  retries: { runMode: 2, openMode: 0 },
+  env: {
+    API_URL: "http://localhost:3001/api"
+  }
 }
 ```
-
-### Environment Variables
-
-Set in `cypress.config.js` under `env`:
-
-- `API_URL` - Backend API URL (default: http://localhost:3001/api)
 
 ## Best Practices
 
@@ -140,11 +171,11 @@ Set in `cypress.config.js` under `env`:
 Tests use `data-cy` attributes for stable selectors:
 
 ```html
-<button data-cy="login-submit-button">Login</button>
+<button data-cy="user-form-submit-button">Guardar</button>
 ```
 
 ```javascript
-cy.get('[data-cy="login-submit-button"]').click()
+cy.get('[data-cy="user-form-submit-button"]').click()
 ```
 
 ### 2. Intercept API Calls
@@ -152,12 +183,12 @@ cy.get('[data-cy="login-submit-button"]').click()
 Mock backend responses for reliable tests:
 
 ```javascript
-cy.intercept("GET", "**/api/product/public/vip*", {
+cy.intercept("GET", "**/api/users*", {
   statusCode: 200,
-  fixture: "products.json"
-}).as("getProducts");
+  fixture: "users.json"
+}).as("getUsers");
 
-cy.wait("@getProducts");
+cy.wait("@getUsers");
 ```
 
 ### 3. Clean State
@@ -168,7 +199,6 @@ Each test starts with a clean state:
 beforeEach(() => {
   cy.clearLocalStorage();
   cy.clearCookies();
-  cy.clearCart();
 });
 ```
 
@@ -180,13 +210,13 @@ Tests don't depend on each other:
 // Good - independent test
 it("should login", () => {
   cy.visit("/login");
-  cy.loginUI("user@example.com", "password");
+  cy.loginUI("admin@example.com", "password");
 });
 
 // Bad - depends on previous test
-it("should show products", () => {
+it("should show users", () => {
   // Assumes already logged in
-  cy.get('[data-cy="product-grid"]').should("exist");
+  cy.get('[data-cy="users-table"]').should("exist");
 });
 ```
 
@@ -195,15 +225,15 @@ it("should show products", () => {
 Wait for elements to be visible before interacting:
 
 ```javascript
-cy.get('[data-cy="product-grid"]').should("be.visible");
-cy.get('[data-cy="product-card"]').first().click();
+cy.get('[data-cy="users-table"]').should("be.visible");
+cy.get('[data-cy="users-table-row"]').first().click();
 ```
 
 ## Debugging Tests
 
 ### 1. Use Cypress UI
 
-Run `npm run test:e2e:open` to see tests run in real-time with:
+Run `npx cypress open` to see tests run in real-time with:
 - Time travel debugging
 - Selector playground
 - Network requests
@@ -212,14 +242,14 @@ Run `npm run test:e2e:open` to see tests run in real-time with:
 ### 2. Add Debug Statements
 
 ```javascript
-cy.get('[data-cy="cart-count"]').debug();
+cy.get('[data-cy="users-table"]').debug();
 cy.pause(); // Pause execution
 ```
 
 ### 3. Take Screenshots
 
 ```javascript
-cy.screenshot("cart-with-items");
+cy.screenshot("users-list");
 ```
 
 ### 4. Check Videos
@@ -233,7 +263,7 @@ Videos are saved in `cypress/videos/` after test runs.
 **Solution**: Add explicit waits
 
 ```javascript
-cy.get('[data-cy="element"]', { timeout: 10000 }).should("be.visible");
+cy.get('[data-cy="users-table"]', { timeout: 10000 }).should("be.visible");
 ```
 
 ### Issue: API intercepts not working
@@ -241,9 +271,9 @@ cy.get('[data-cy="element"]', { timeout: 10000 }).should("be.visible");
 **Solution**: Ensure intercepts are set before visiting page
 
 ```javascript
-cy.intercept("GET", "**/api/products").as("getProducts");
-cy.visit("/");
-cy.wait("@getProducts");
+cy.intercept("GET", "**/api/users*").as("getUsers");
+cy.visit("/dashboard/users");
+cy.wait("@getUsers");
 ```
 
 ### Issue: Elements not found
@@ -251,7 +281,7 @@ cy.wait("@getProducts");
 **Solution**: Check if element is in viewport or needs scrolling
 
 ```javascript
-cy.get('[data-cy="element"]').scrollIntoView().should("be.visible");
+cy.get('[data-cy="user-form-submit-button"]').scrollIntoView().should("be.visible");
 ```
 
 ## CI/CD Integration
@@ -260,7 +290,7 @@ cy.get('[data-cy="element"]').scrollIntoView().should("be.visible");
 
 ```yaml
 - name: Run Cypress tests
-  run: npm run test:e2e:run
+  run: npx cypress run
   
 - name: Upload videos
   if: failure()
@@ -274,16 +304,31 @@ cy.get('[data-cy="element"]').scrollIntoView().should("be.visible");
 
 The test suite covers:
 
-- ✅ Login/Authentication (valid, invalid, validation)
-- ✅ Product browsing (search, filter, pagination)
-- ✅ Cart management (add, remove, update quantities)
-- ✅ Checkout process (form validation, submission)
-- ✅ Order confirmation
+- ✅ Login/Authentication (valid, invalid, validation, registration)
+- ✅ User listing (search, filter, pagination)
+- ✅ User creation (validation, success, errors)
+- ✅ User editing (update info, change role, change status)
+- ✅ User actions (block, reset password, change role)
+- ✅ Complete workflows (full lifecycle)
 - ✅ Error handling and recovery
 - ✅ Session persistence
 - ✅ Protected routes
 - ✅ Empty states
 - ✅ Edge cases
+
+## Current Status
+
+**Note**: All test scenarios are currently **commented out** and ready for implementation in the next iteration. Each test includes:
+- Clear description of what it tests
+- Step-by-step implementation hints
+- Realistic API mocking patterns
+- Expected assertions and outcomes
+
+To implement the tests:
+1. Uncomment test scenarios one by one
+2. Adjust assertions based on actual application behavior
+3. Add any missing data-cy attributes discovered during implementation
+4. Run tests and fix any failures
 
 ## Maintenance
 

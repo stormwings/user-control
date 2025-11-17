@@ -23,6 +23,7 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
           value={values.name || ''}
           onChange={handleChange}
           required
+          data-cy="user-form-input-name"
           className={inputClass}
         />
         {errors.name && <span className={errorClass}>{errors.name}</span>}
@@ -41,6 +42,7 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
           onChange={handleChange}
           autoComplete="username"
           required
+          data-cy="user-form-input-email"
           className={inputClass}
         />
         {errors.email && <span className={errorClass}>{errors.email}</span>}
@@ -61,6 +63,7 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
             autoComplete="new-password"
             required
             minLength={6}
+            data-cy="user-form-input-password"
             className={inputClass}
           />
           {errors.password && <span className={errorClass}>{errors.password}</span>}
@@ -81,6 +84,7 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
           placeholder="+1234567890"
           value={values.phone || ''}
           onChange={handleChange}
+          data-cy="user-form-input-phone"
           className={inputClass}
         />
         {errors.phone && <span className={errorClass}>{errors.phone}</span>}
@@ -97,6 +101,7 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
           placeholder="Sucursal Central"
           value={values.branch || ''}
           onChange={handleChange}
+          data-cy="user-form-input-branch"
           className={inputClass}
         />
         {errors.branch && <span className={errorClass}>{errors.branch}</span>}

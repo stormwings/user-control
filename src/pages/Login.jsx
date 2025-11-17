@@ -48,6 +48,7 @@ const Login = () => {
       <form
         onSubmit={handleSubmit}
         aria-label="Formulario de ingreso"
+        data-cy="login-form"
         className="w-[400px] max-w-full rounded-xl bg-white dark:bg-gray-800 p-12 pt-12 shadow-card transition-colors"
       >
         <h1 className="mb-6 text-center text-2xl font-f1 text-brand-text dark:text-gray-200">
@@ -70,6 +71,7 @@ const Login = () => {
             onChange={onChange}
             autoComplete="username"
             required
+            data-cy="login-input-email"
             className="
               mt-2 rounded-lg border border-gray-200 dark:border-gray-600
               bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3
@@ -99,6 +101,7 @@ const Login = () => {
             onChange={onChange}
             autoComplete="current-password"
             required
+            data-cy="login-input-password"
             className="
               mt-2 rounded-lg border border-gray-200 dark:border-gray-600
               bg-[#f6f6f6] dark:bg-gray-700 px-3 py-3
@@ -115,6 +118,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={isLoading}
+          data-cy="login-submit-button"
           className="
             w-full rounded-full bg-brand-primary dark:bg-brand-hover px-4 py-3 font-bold text-white
             shadow-btn transition active:translate-y-[1px]
@@ -127,6 +131,7 @@ const Login = () => {
         <div className="mt-4 text-center">
           <a
             href="/"
+            data-cy="login-back-home-link"
             className="font-medium text-brand-primary dark:text-brand-hover hover:text-brand-hover dark:hover:text-opacity-80"
           >
             Volver al inicio
