@@ -49,7 +49,6 @@ export function useUsersList() {
     setError(null);
 
     try {
-      // Mapear valores del frontend (UPPERCASE) al backend (lowercase)
       const mapStatusToBackend = (status) => {
         if (status === 'all') return undefined;
         return status.toLowerCase();
@@ -57,7 +56,6 @@ export function useUsersList() {
 
       const mapRoleToBackend = (role) => {
         if (role === 'all') return undefined;
-        // Backend espera 'admin' o 'user', no 'SELLER'
         if (role === 'ADMIN') return 'admin';
         if (role === 'SELLER') return 'user';
         return undefined;
@@ -73,12 +71,10 @@ export function useUsersList() {
 
       const response = await fetchUsers(params);
 
-      // Detectar si la respuesta es paginada o no
       let mappedUsers;
       let paginationData;
 
       if (Array.isArray(response)) {
-        // Modo sin paginación (retrocompatible)
         mappedUsers = mapUsersFromApi(response);
         paginationData = {
           page: 1,
@@ -87,7 +83,6 @@ export function useUsersList() {
           totalPages: 1,
         };
       } else if (response.data && response.pagination) {
-        // Modo con paginación (nuevo formato)
         mappedUsers = mapUsersFromApi(response.data);
         paginationData = {
           page: response.pagination.page,
@@ -96,7 +91,6 @@ export function useUsersList() {
           totalPages: response.pagination.totalPages,
         };
       } else {
-        // Fallback para otros formatos
         mappedUsers = mapUsersFromApi(response.data || response.users || response);
         paginationData = {
           page,
