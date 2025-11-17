@@ -26,8 +26,8 @@ export const Pagination = ({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="mt-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 pt-4">
-      <div className="text-xs text-gray-600 dark:text-gray-400">
+    <div className="mt-4 flex items-center justify-between border-t border-gray-700 pt-4">
+      <div className="text-xs text-gray-400">
         Mostrando {startIndex + 1}-{endIndex} de {totalItems}
       </div>
 
@@ -36,7 +36,7 @@ export const Pagination = ({
           type="button"
           onClick={() => onPageChange(currentPage - 1)}
           disabled={currentPage === 1}
-          className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 text-xs hover:bg-gray-50 dark:hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+          className="inline-flex items-center justify-center rounded-md border border-gray-600 bg-gray-800 p-2 text-xs hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
           title="Página anterior"
         >
           <FiChevronLeft />
@@ -50,7 +50,7 @@ export const Pagination = ({
             return (
               <div key={page} className="flex items-center gap-1">
                 {showEllipsis && (
-                  <span className="px-2 text-xs text-gray-500 dark:text-gray-400">
+                  <span className="px-2 text-xs text-gray-400">
                     …
                   </span>
                 )}
@@ -60,7 +60,7 @@ export const Pagination = ({
                   className={`min-w-[32px] rounded-md px-3 py-1.5 text-xs font-medium transition-colors ${
                     currentPage === page
                       ? "bg-[var(--blackpos-primary)] text-white"
-                      : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+                      : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                   }`}
                 >
                   {page}
@@ -74,7 +74,7 @@ export const Pagination = ({
           type="button"
           onClick={() => onPageChange(currentPage + 1)}
           disabled={currentPage === totalPages}
-          className="inline-flex items-center justify-center rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 p-2 text-xs hover:bg-gray-50 dark:hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
+          className="inline-flex items-center justify-center rounded-md border border-gray-600 bg-gray-800 p-2 text-xs hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
           title="Página siguiente"
         >
           <FiChevronRight />

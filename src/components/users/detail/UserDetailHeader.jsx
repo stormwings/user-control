@@ -22,15 +22,15 @@ export const UserDetailHeader = ({ user, onAction }) => {
           </Button>
 
           <div className="flex items-center gap-4">
-            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 dark:bg-brand-hover/10 text-2xl font-semibold text-brand-primary dark:text-brand-hover">
+            <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand-hover/10 text-2xl font-semibold text-brand-hover">
               {user?.name?.charAt(0)?.toUpperCase() || 'U'}
             </div>
 
             <div>
-              <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
+              <h1 className="text-2xl font-semibold text-gray-100">
                 {user?.name || 'Usuario'}
               </h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              <p className="text-sm text-gray-400 mt-1">
                 {user?.email}
               </p>
               <div className="flex items-center gap-2 mt-2">

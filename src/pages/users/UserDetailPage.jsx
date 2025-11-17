@@ -32,8 +32,8 @@ function UserDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-200 dark:border-gray-700 border-t-brand-primary dark:border-t-brand-hover"></div>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <div className="h-12 w-12 animate-spin rounded-full border-4 border-gray-700 border-t-brand-hover"></div>
+          <p className="text-sm text-gray-400">
             Cargando usuario...
           </p>
         </div>
@@ -45,10 +45,10 @@ function UserDetailPage() {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
-          <p className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
+          <p className="text-lg font-semibold text-gray-100 mb-2">
             Usuario no encontrado
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-400">
             El usuario que buscas no existe o fue eliminado.
           </p>
         </div>

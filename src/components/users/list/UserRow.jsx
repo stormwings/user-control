@@ -28,23 +28,23 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
 
   return (
     <tr
-      className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors cursor-pointer"
+      className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors cursor-pointer"
       onClick={() => onRowClick?.(user._id)}
     >
-      <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
+      <td className="px-4 py-3 text-sm text-gray-400">
         #{index + 1}
       </td>
 
       <td className="px-4 py-3">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-primary/10 dark:bg-brand-hover/10 text-sm font-semibold text-brand-primary dark:text-brand-hover">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-brand-hover/10 text-sm font-semibold text-brand-hover">
             {user.name?.charAt(0)?.toUpperCase() || 'U'}
           </div>
           <div className="min-w-0">
-            <p className="truncate font-medium text-gray-800 dark:text-gray-200">
+            <p className="truncate font-medium text-gray-200">
               {user.name || '— — —'}
             </p>
-            <p className="truncate text-xs text-gray-500 dark:text-gray-400">
+            <p className="truncate text-xs text-gray-400">
               {user.email}
             </p>
           </div>
@@ -59,11 +59,11 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
         <UserStatusBadge status={user.status} />
       </td>
 
-      <td className="px-4 py-3 text-sm text-gray-600 dark:text-gray-300">
+      <td className="px-4 py-3 text-sm text-gray-300">
         {user.branch || '—'}
       </td>
 
-      <td className="px-4 py-3 text-sm text-gray-500 dark:text-gray-400">
+      <td className="px-4 py-3 text-sm text-gray-400">
         {user.lastLoginAt
           ? new Date(user.lastLoginAt).toLocaleDateString()
           : 'Nunca'}
@@ -76,20 +76,20 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
               e.stopPropagation();
               setShowMenu(!showMenu);
             }}
-            className="inline-flex items-center justify-center rounded-md p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+            className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 transition-colors"
             title="Más acciones"
           >
             <FiMoreVertical />
           </button>
 
           {showMenu && (
-            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg py-1">
+            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-700 bg-gray-800 shadow-lg py-1">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleAction('view');
                 }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 <FiEye /> Ver detalle
               </button>
@@ -99,7 +99,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('edit');
                 }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 <FiEdit /> Editar
               </button>
@@ -109,12 +109,12 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('changeRole');
                 }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 <FiShield /> Cambiar rol
               </button>
 
-              <div className="border-t border-gray-200 dark:border-gray-700 my-1" />
+              <div className="border-t border-gray-700 my-1" />
 
               {isUserActive(user) && (
                 <button
@@ -122,7 +122,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     e.stopPropagation();
                     handleAction('block');
                   }}
-                  className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                  className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 transition-colors"
                 >
                   <FiLock /> Bloquear
                 </button>
@@ -134,7 +134,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     e.stopPropagation();
                     handleAction('unblock');
                   }}
-                  className="flex w-full items-center gap-2 px-4 py-2 text-sm text-green-600 dark:text-green-400 hover:bg-green-50 dark:hover:bg-green-900/20 transition-colors"
+                  className="flex w-full items-center gap-2 px-4 py-2 text-sm text-green-400 hover:bg-green-900/20 transition-colors"
                 >
                   <FiUnlock /> Desbloquear
                 </button>
@@ -145,7 +145,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   e.stopPropagation();
                   handleAction('resetPassword');
                 }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 <FiKey /> Restablecer contraseña
               </button>

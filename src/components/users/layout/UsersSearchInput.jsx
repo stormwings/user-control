@@ -5,7 +5,7 @@ export const UsersSearchInput = ({ value, onChange, placeholder = "Buscar usuari
   return (
     <div className="relative w-full sm:w-80">
       <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-        <FiSearch className="text-gray-400 dark:text-gray-500" />
+        <FiSearch className="text-gray-500" />
       </div>
       <Input
         type="text"
