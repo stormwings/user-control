@@ -57,7 +57,7 @@ export function useUsersList() {
       const mapRoleToBackend = (role) => {
         if (role === 'all') return undefined;
         if (role === 'ADMIN') return 'admin';
-        if (role === 'SELLER') return 'user';
+        if (role === 'USER') return 'user';
         return undefined;
       };
 
