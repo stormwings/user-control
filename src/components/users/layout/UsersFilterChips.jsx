@@ -36,8 +36,8 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
         </FilterButton>
 
         <FilterButton
-          active={role === UserRole.SELLER}
-          onClick={() => onChangeRole(UserRole.SELLER)}
+          active={role === UserRole.USER}
+          onClick={() => onChangeRole(UserRole.USER)}
           icon={FiUsers}
           title="Solo usuarios regulares"
         >
