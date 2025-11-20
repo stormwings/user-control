@@ -25,7 +25,7 @@ export async function fetchUserById(userId) {
 
 export async function createUser(payload) {
   try {
-    const response = await httpRequest.post('auth/users', payload);
+    const response = await httpRequest.post('auth/register', payload);
     return response.data;
   } catch (error) {
     console.error('Create user error:', error);

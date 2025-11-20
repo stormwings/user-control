@@ -57,9 +57,7 @@ export function mapCreateUserPayload(formValues) {
     name: formValues.name.trim(),
     email: formValues.email.trim().toLowerCase(),
     password: formValues.password,
-    phone: formValues.phone?.trim() || '',
     role: formValues.role || UserRole.SELLER,
-    branch: formValues.branch?.trim() || '',
   };
 }
 
@@ -67,9 +65,7 @@ export function mapUpdateUserPayload(formValues) {
   return {
     name: formValues.name.trim(),
     email: formValues.email.trim().toLowerCase(),
-    phone: formValues.phone?.trim() || '',
     role: formValues.role || UserRole.SELLER,
-    branch: formValues.branch?.trim() || '',
   };
 }
 
@@ -79,8 +75,6 @@ export function mapUserToFormValues(user) {
   return {
     name: user.name || '',
     email: user.email || '',
-    phone: user.phone || '',
     role: user.role || UserRole.SELLER,
-    branch: user.branch || '',
   };
 }

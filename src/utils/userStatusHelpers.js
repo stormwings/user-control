@@ -25,6 +25,8 @@ export function getRoleTone(role) {
       return 'blue';
     case UserRole.SELLER:
       return 'amber';
+    case UserRole.USER:
+      return 'green';
     case UserRole.VIEWER:
       return 'gray';
     default:

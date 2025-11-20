@@ -70,37 +70,6 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
         </div>
       )}
 
-      <div className="flex flex-col">
-        <label htmlFor="phone" className={labelClass}>
-          Teléfono
-        </label>
-        <input
-          id="phone"
-          type="tel"
-          name="phone"
-          placeholder="+1234567890"
-          value={values.phone || ''}
-          onChange={handleChange}
-          className={inputClass}
-        />
-        {errors.phone && <span className={errorClass}>{errors.phone}</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <label htmlFor="branch" className={labelClass}>
-          Sucursal
-        </label>
-        <input
-          id="branch"
-          type="text"
-          name="branch"
-          placeholder="Sucursal Central"
-          value={values.branch || ''}
-          onChange={handleChange}
-          className={inputClass}
-        />
-        {errors.branch && <span className={errorClass}>{errors.branch}</span>}
-      </div>
     </div>
   );
 };

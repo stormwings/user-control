@@ -14,13 +14,11 @@ export const UserForm = ({
   isLoading = false,
 }) => {
   const [values, setValues] = useState({
-    name: initialValues.name || '',
-    email: initialValues.email || '',
+    name: initialValues?.name || '',
+    email: initialValues?.email || '',
     password: '',
-    phone: initialValues.phone || '',
-    branch: initialValues.branch || '',
-    role: initialValues.role || UserRole.SELLER,
-    status: initialValues.status || UserStatus.ACTIVE,
+    role: initialValues?.role || UserRole.SELLER,
+    status: initialValues?.status || UserStatus.ACTIVE,
   });
 
   const [errors, setErrors] = useState({});

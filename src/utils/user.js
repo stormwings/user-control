@@ -1,6 +1,7 @@
 export const UserRole = {
   ADMIN: 'ADMIN',
   SELLER: 'SELLER',
+  USER: 'USER',
   VIEWER: 'VIEWER',
 };
 
@@ -14,6 +15,7 @@ export const UserStatus = {
 export const UserRoleLabels = {
   [UserRole.ADMIN]: 'Administrador',
   [UserRole.SELLER]: 'Vendedor',
+  [UserRole.USER]: 'Usuario',
   [UserRole.VIEWER]: 'Visualizador',
 };
 

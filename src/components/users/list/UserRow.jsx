@@ -59,10 +59,6 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
         <UserStatusBadge status={user.status} />
       </td>
 
-      <td className="px-4 py-3 text-sm text-gray-300">
-        {user.branch || '—'}
-      </td>
-
       <td className="px-4 py-3 text-sm text-gray-400">
         {user.lastLoginAt
           ? new Date(user.lastLoginAt).toLocaleDateString()

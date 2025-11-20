@@ -1,4 +1,4 @@
-import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
+import { FiMail } from 'react-icons/fi';
 import { Card, CardHeader } from '../../ui/Card';
 
 export const UserSummaryCard = ({ user }) => {
@@ -26,25 +26,6 @@ export const UserSummaryCard = ({ user }) => {
           </p>
         </div>
 
-        <div>
-          <label className="text-xs font-medium text-gray-400 flex items-center gap-1">
-            <FiPhone className="text-xs" />
-            Teléfono
-          </label>
-          <p className="mt-1 text-sm text-gray-100">
-            {user?.phone || '—'}
-          </p>
-        </div>
-
-        <div>
-          <label className="text-xs font-medium text-gray-400 flex items-center gap-1">
-            <FiMapPin className="text-xs" />
-            Sucursal
-          </label>
-          <p className="mt-1 text-sm text-gray-100">
-            {user?.branch || '—'}
-          </p>
-        </div>
       </div>
     </Card>
   );
