@@ -8,7 +8,7 @@ import UsersTable from '../../components/users/list/UsersTable';
 import UsersPagination from '../../components/users/layout/UsersPagination';
 import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
 import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
-import DeactivateUserDialog from '../../components/users/dialogs/DeactivateUserDialog';
+import UnblockUserDialog from '../../components/users/dialogs/UnblockUserDialog';
 import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
 
 function UsersListPage() {
@@ -100,8 +100,8 @@ function UsersListPage() {
         onSuccess={handleActionSuccess}
       />
 
-      <DeactivateUserDialog
-        open={currentAction?.type === 'deactivate'}
+      <UnblockUserDialog
+        open={currentAction?.type === 'unblock'}
         user={currentAction?.user}
         onClose={closeAction}
         onSuccess={handleActionSuccess}

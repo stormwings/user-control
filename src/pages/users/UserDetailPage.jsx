@@ -5,15 +5,17 @@ import UserDetailHeader from '../../components/users/detail/UserDetailHeader';
 import UserSummaryCard from '../../components/users/detail/UserSummaryCard';
 import UserAccountStateCard from '../../components/users/detail/UserAccountStateCard';
 import UserMetaInfo from '../../components/users/detail/UserMetaInfo';
-import UserAuditMiniList from '../../components/users/detail/UserAuditMiniList';
+// TODO: Enable when audit endpoint is available in backend
+// import UserAuditMiniList from '../../components/users/detail/UserAuditMiniList';
 import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
 import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
-import DeactivateUserDialog from '../../components/users/dialogs/DeactivateUserDialog';
+import UnblockUserDialog from '../../components/users/dialogs/UnblockUserDialog';
 import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
 
 function UserDetailPage() {
   const { userId } = useParams();
-  const { user, auditLog, isLoading, isLoadingAudit, error, refresh } = useUserDetail(userId);
+  // TODO: Enable auditLog and isLoadingAudit when audit endpoint is available in backend
+  const { user, /* auditLog, */ isLoading, /* isLoadingAudit, */ error, refresh } = useUserDetail(userId);
   const [currentAction, setCurrentAction] = useState(null);
 
   const handleAction = (type, actionUser) => {
@@ -68,7 +70,8 @@ function UserDetailPage() {
 
         <div className="space-y-6">
           <UserAccountStateCard user={user} onAction={handleAction} />
-          <UserAuditMiniList auditLog={auditLog} isLoading={isLoadingAudit} />
+          {/* TODO: Enable when audit endpoint is available in backend */}
+          {/* <UserAuditMiniList auditLog={auditLog} isLoading={isLoadingAudit} /> */}
         </div>
       </div>
 
@@ -86,8 +89,8 @@ function UserDetailPage() {
         onSuccess={handleActionSuccess}
       />
 
-      <DeactivateUserDialog
-        open={currentAction?.type === 'deactivate'}
+      <UnblockUserDialog
+        open={currentAction?.type === 'unblock'}
         user={currentAction?.user}
         onClose={closeAction}
         onSuccess={handleActionSuccess}

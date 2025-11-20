@@ -2,7 +2,7 @@ import { FiMoreVertical, FiEye, FiShield, FiLock, FiUnlock, FiKey } from 'react-
 import { useState, useRef, useEffect } from 'react';
 import { UserRoleBadge } from './UserRoleBadge';
 import { UserStatusBadge } from './UserStatusBadge';
-import { isUserActive, isUserBlocked } from '../../../utils/userStatusHelpers';
+import { isUserBlocked } from '../../../utils/userStatusHelpers';
 
 export const UserRow = ({ user, index, onRowClick, onAction }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -102,7 +102,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
 
               <div className="border-t border-gray-700 my-1" />
 
-              {isUserActive(user) && (
+              {!isUserBlocked(user) && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

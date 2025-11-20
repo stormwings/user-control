@@ -7,8 +7,6 @@ import {
   changeUserRole as apiChangeUserRole,
   blockUser as apiBlockUser,
   unblockUser as apiUnblockUser,
-  deactivateUser as apiDeactivateUser,
-  activateUser as apiActivateUser,
   resetUserPassword as apiResetUserPassword,
   deleteUser as apiDeleteUser,
 } from '../../utils/users';
@@ -133,38 +131,6 @@ export const unblockUserAccount = createAsyncThunk(
   }
 );
 
-export const deactivateUserAccount = createAsyncThunk(
-  'users/deactivateUser',
-  async (userId, { rejectWithValue }) => {
-    try {
-      const response = await apiDeactivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-      toast.success('Usuario desactivado exitosamente');
-      return user;
-    } catch (error) {
-      const message = error.response?.data?.message || 'Error al desactivar usuario';
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
-
-export const activateUserAccount = createAsyncThunk(
-  'users/activateUser',
-  async (userId, { rejectWithValue }) => {
-    try {
-      const response = await apiActivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-      toast.success('Usuario activado exitosamente');
-      return user;
-    } catch (error) {
-      const message = error.response?.data?.message || 'Error al activar usuario';
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
-
 export const resetPassword = createAsyncThunk(
   'users/resetPassword',
   async ({ userId, newPassword }, { rejectWithValue }) => {
@@ -277,16 +243,6 @@ const usersSlice = createSlice({
         if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
       })
       .addCase(unblockUserAccount.fulfilled, (state, action) => {
-        const index = state.users.findIndex(u => u._id === action.payload._id);
-        if (index !== -1) state.users[index] = action.payload;
-        if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
-      })
-      .addCase(deactivateUserAccount.fulfilled, (state, action) => {
-        const index = state.users.findIndex(u => u._id === action.payload._id);
-        if (index !== -1) state.users[index] = action.payload;
-        if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
-      })
-      .addCase(activateUserAccount.fulfilled, (state, action) => {
         const index = state.users.findIndex(u => u._id === action.payload._id);
         if (index !== -1) state.users[index] = action.payload;
         if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;

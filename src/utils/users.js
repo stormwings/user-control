@@ -58,33 +58,11 @@ export async function blockUser(userId, reason) {
 
 export async function unblockUser(userId) {
   try {
-    const response = await httpRequest.post(`auth/users/${userId}/unblock`);
+    const response = await httpRequest.post(`auth/users/${userId}/block`, { status: 'active' });
     return response.data;
   } catch (error) {
     console.error('Unblock user error:', error);
     toast.error(error.response?.data?.message || 'Error al desbloquear usuario');
-    throw error;
-  }
-}
-
-export async function deactivateUser(userId) {
-  try {
-    const response = await httpRequest.post(`auth/users/${userId}/deactivate`);
-    return response.data;
-  } catch (error) {
-    console.error('Deactivate user error:', error);
-    toast.error(error.response?.data?.message || 'Error al desactivar usuario');
-    throw error;
-  }
-}
-
-export async function activateUser(userId) {
-  try {
-    const response = await httpRequest.post(`auth/users/${userId}/activate`);
-    return response.data;
-  } catch (error) {
-    console.error('Activate user error:', error);
-    toast.error(error.response?.data?.message || 'Error al activar usuario');
     throw error;
   }
 }
