@@ -31,16 +31,16 @@ export function mapStatusFromBackend(backendStatus) {
 export function mapRoleFromBackend(backendRole, isAdmin) {
   if (isAdmin) return UserRole.ADMIN;
 
-  if (!backendRole) return UserRole.SELLER;
+  if (!backendRole) return UserRole.USER;
 
   const roleMap = {
     'admin': UserRole.ADMIN,
-    'user': UserRole.SELLER,
     'seller': UserRole.SELLER,
+    'user': UserRole.USER,
     'viewer': UserRole.VIEWER,
   };
 
-  return roleMap[backendRole.toLowerCase()] || UserRole.SELLER;
+  return roleMap[backendRole.toLowerCase()] || UserRole.USER;
 }
 
 export function determineUserStatus(user) {
@@ -57,24 +57,5 @@ export function mapCreateUserPayload(formValues) {
     name: formValues.name.trim(),
     email: formValues.email.trim().toLowerCase(),
     password: formValues.password,
-    role: formValues.role || UserRole.SELLER,
-  };
-}
-
-export function mapUpdateUserPayload(formValues) {
-  return {
-    name: formValues.name.trim(),
-    email: formValues.email.trim().toLowerCase(),
-    role: formValues.role || UserRole.SELLER,
-  };
-}
-
-export function mapUserToFormValues(user) {
-  if (!user) return {};
-
-  return {
-    name: user.name || '',
-    email: user.email || '',
-    role: user.role || UserRole.SELLER,
   };
 }

@@ -34,17 +34,6 @@ export async function createUser(payload) {
   }
 }
 
-export async function updateUser(userId, payload) {
-  try {
-    const response = await httpRequest.put(`auth/users/${userId}`, payload);
-    return response.data;
-  } catch (error) {
-    console.error('Update user error:', error);
-    toast.error(error.response?.data?.message || 'Error al actualizar usuario');
-    throw error;
-  }
-}
-
 export async function changeUserRole(userId, role) {
   try {
     const response = await httpRequest.patch(`auth/users/${userId}/role`, { role });

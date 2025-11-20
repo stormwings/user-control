@@ -36,8 +36,6 @@ function UsersListPage() {
   const handleAction = (type, user) => {
     if (type === 'view') {
       navigate(`/dashboard/users/${user._id}`);
-    } else if (type === 'edit') {
-      navigate(`/dashboard/users/${user._id}/edit`);
     } else {
       openAction(type, user);
     }

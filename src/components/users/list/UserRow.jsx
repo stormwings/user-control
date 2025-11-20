@@ -1,4 +1,4 @@
-import { FiMoreVertical, FiEdit, FiEye, FiShield, FiLock, FiUnlock, FiKey } from 'react-icons/fi';
+import { FiMoreVertical, FiEye, FiShield, FiLock, FiUnlock, FiKey } from 'react-icons/fi';
 import { useState, useRef, useEffect } from 'react';
 import { UserRoleBadge } from './UserRoleBadge';
 import { UserStatusBadge } from './UserStatusBadge';
@@ -88,16 +88,6 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
               >
                 <FiEye /> Ver detalle
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleAction('edit');
-                }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
-              >
-                <FiEdit /> Editar
               </button>
 
               <button

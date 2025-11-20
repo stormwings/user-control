@@ -1,5 +1,4 @@
-
-export const UserProfileFields = ({ values, onChange, mode = 'create', errors }) => {
+export const UserProfileFields = ({ values, onChange, errors }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     onChange({ ...values, [name]: value });
@@ -46,30 +45,27 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
         {errors.email && <span className={errorClass}>{errors.email}</span>}
       </div>
 
-      {mode === 'create' && (
-        <div className="flex flex-col">
-          <label htmlFor="password" className={labelClass}>
-            Contraseña <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="••••••••"
-            value={values.password || ''}
-            onChange={handleChange}
-            autoComplete="new-password"
-            required
-            minLength={6}
-            className={inputClass}
-          />
-          {errors.password && <span className={errorClass}>{errors.password}</span>}
-          <span className="text-xs text-gray-400 mt-1">
-            Mínimo 6 caracteres
-          </span>
-        </div>
-      )}
-
+      <div className="flex flex-col">
+        <label htmlFor="password" className={labelClass}>
+          Contraseña <span className="text-red-500">*</span>
+        </label>
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="••••••••"
+          value={values.password || ''}
+          onChange={handleChange}
+          autoComplete="new-password"
+          required
+          minLength={6}
+          className={inputClass}
+        />
+        {errors.password && <span className={errorClass}>{errors.password}</span>}
+        <span className="text-xs text-gray-400 mt-1">
+          Mínimo 6 caracteres
+        </span>
+      </div>
     </div>
   );
 };

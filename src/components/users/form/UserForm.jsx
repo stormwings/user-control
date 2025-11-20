@@ -2,23 +2,16 @@ import { useState } from 'react';
 import { Card } from '../../ui/Card';
 import { Button } from '../../ui/Button';
 import { UserProfileFields } from './UserProfileFields';
-import { UserRoleSelect } from './UserRoleSelect';
-import { UserStatusSelect } from './UserStatusSelect';
-import { UserRole, UserStatus } from '../../../utils/user';
 
 export const UserForm = ({
-  mode = 'create',
-  initialValues,
   onSubmit,
   onCancel,
   isLoading = false,
 }) => {
   const [values, setValues] = useState({
-    name: initialValues?.name || '',
-    email: initialValues?.email || '',
+    name: '',
+    email: '',
     password: '',
-    role: initialValues?.role || UserRole.SELLER,
-    status: initialValues?.status || UserStatus.ACTIVE,
   });
 
   const [errors, setErrors] = useState({});
@@ -36,14 +29,10 @@ export const UserForm = ({
       newErrors.email = 'Correo electrónico inválido';
     }
 
-    if (mode === 'create' && !values.password) {
+    if (!values.password) {
       newErrors.password = 'La contraseña es requerida';
-    } else if (mode === 'create' && values.password.length < 6) {
+    } else if (values.password.length < 6) {
       newErrors.password = 'La contraseña debe tener al menos 6 caracteres';
-    }
-
-    if (!values.role) {
-      newErrors.role = 'El rol es requerido';
     }
 
     setErrors(newErrors);
@@ -68,41 +57,14 @@ export const UserForm = ({
     <form onSubmit={handleSubmit} className="space-y-6">
       <Card>
         <h2 className="text-lg font-semibold text-gray-100 mb-4">
-          {mode === 'create' ? 'Información del Usuario' : 'Editar Información'}
+          Información del Usuario
         </h2>
 
         <UserProfileFields
           values={values}
           onChange={setValues}
-          mode={mode}
           errors={errors}
         />
-      </Card>
-
-      <Card>
-        <h2 className="text-lg font-semibold text-gray-100 mb-4">
-          Permisos y Estado
-        </h2>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <UserRoleSelect
-            value={values.role}
-            onChange={(role) => setValues({ ...values, role })}
-          />
-
-          {mode === 'edit' && (
-            <UserStatusSelect
-              value={values.status}
-              onChange={(status) => setValues({ ...values, status })}
-            />
-          )}
-        </div>
-
-        {errors.role && (
-          <span className="text-xs text-red-400 mt-2 block">
-            {errors.role}
-          </span>
-        )}
       </Card>
 
       <div className="flex items-center justify-end gap-3">
@@ -120,9 +82,7 @@ export const UserForm = ({
           variant="primary"
           disabled={isLoading}
         >
-          {isLoading
-            ? (mode === 'create' ? 'Creando...' : 'Guardando...')
-            : (mode === 'create' ? 'Crear Usuario' : 'Guardar Cambios')}
+          {isLoading ? 'Creando...' : 'Crear Usuario'}
         </Button>
       </div>
     </form>

@@ -1,4 +1,4 @@
-import { FiArrowLeft, FiEdit, FiMoreVertical } from 'react-icons/fi';
+import { FiArrowLeft, FiMoreVertical } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 import { UserStatusBadge } from '../list/UserStatusBadge';
@@ -42,15 +42,6 @@ export const UserDetailHeader = ({ user, onAction }) => {
         </div>
 
         <div className="flex items-center gap-2">
-          <Button
-            variant="primary"
-            size="md"
-            onClick={() => navigate(`/dashboard/users/${user?._id}/edit`)}
-          >
-            <FiEdit />
-            <span className="hidden sm:inline">Editar</span>
-          </Button>
-
           <Button
             variant="ghost"
             size="md"

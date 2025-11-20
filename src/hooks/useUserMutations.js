@@ -2,7 +2,6 @@ import { useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import {
   createUser as apiCreateUser,
-  updateUser as apiUpdateUser,
   changeUserRole as apiChangeUserRole,
   blockUser as apiBlockUser,
   unblockUser as apiUnblockUser,
@@ -13,7 +12,6 @@ import {
 } from '../utils/users';
 import {
   mapCreateUserPayload,
-  mapUpdateUserPayload,
   mapUserFromApi,
 } from '../utils/userMappers';
 
@@ -37,28 +35,6 @@ export function useUserMutations() {
       console.error('Error creating user:', err);
       setError(err);
       toast.error(err.response?.data?.message || 'Error al crear usuario');
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-
-  const updateUser = useCallback(async (userId, formValues) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const payload = mapUpdateUserPayload(formValues);
-      const response = await apiUpdateUser(userId, payload);
-      const user = mapUserFromApi(response.data || response);
-
-      toast.success('Usuario actualizado exitosamente');
-      return user;
-    } catch (err) {
-      console.error('Error updating user:', err);
-      setError(err);
-      toast.error(err.response?.data?.message || 'Error al actualizar usuario');
       throw err;
     } finally {
       setIsLoading(false);
@@ -212,7 +188,6 @@ export function useUserMutations() {
     isLoading,
     error,
     createUser,
-    updateUser,
     changeRole,
     blockUser,
     unblockUser,

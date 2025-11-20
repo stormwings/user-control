@@ -13,7 +13,6 @@ import PrivateRoute from "./components/routing/PrivateRoute";
 import UsersListPage from "./pages/users/UsersListPage";
 import UserCreatePage from "./pages/users/UserCreatePage";
 import UserDetailPage from "./pages/users/UserDetailPage";
-import UserEditPage from "./pages/users/UserEditPage";
 
 function App() {
   return (
@@ -38,7 +37,6 @@ function App() {
               <Route path="users" element={<UsersListPage />} />
               <Route path="users/new" element={<UserCreatePage />} />
               <Route path="users/:userId" element={<UserDetailPage />} />
-              <Route path="users/:userId/edit" element={<UserEditPage />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
