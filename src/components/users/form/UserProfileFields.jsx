@@ -1,5 +1,4 @@
-
-export const UserProfileFields = ({ values, onChange, mode = 'create', errors }) => {
+export const UserProfileFields = ({ values, onChange, errors }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     onChange({ ...values, [name]: value });
@@ -46,60 +45,26 @@ export const UserProfileFields = ({ values, onChange, mode = 'create', errors })
         {errors.email && <span className={errorClass}>{errors.email}</span>}
       </div>
 
-      {mode === 'create' && (
-        <div className="flex flex-col">
-          <label htmlFor="password" className={labelClass}>
-            Contraseña <span className="text-red-500">*</span>
-          </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            placeholder="••••••••"
-            value={values.password || ''}
-            onChange={handleChange}
-            autoComplete="new-password"
-            required
-            minLength={6}
-            className={inputClass}
-          />
-          {errors.password && <span className={errorClass}>{errors.password}</span>}
-          <span className="text-xs text-gray-400 mt-1">
-            Mínimo 6 caracteres
-          </span>
-        </div>
-      )}
-
       <div className="flex flex-col">
-        <label htmlFor="phone" className={labelClass}>
-          Teléfono
+        <label htmlFor="password" className={labelClass}>
+          Contraseña <span className="text-red-500">*</span>
         </label>
         <input
-          id="phone"
-          type="tel"
-          name="phone"
-          placeholder="+1234567890"
-          value={values.phone || ''}
+          id="password"
+          type="password"
+          name="password"
+          placeholder="••••••••"
+          value={values.password || ''}
           onChange={handleChange}
+          autoComplete="new-password"
+          required
+          minLength={6}
           className={inputClass}
         />
-        {errors.phone && <span className={errorClass}>{errors.phone}</span>}
-      </div>
-
-      <div className="flex flex-col">
-        <label htmlFor="branch" className={labelClass}>
-          Sucursal
-        </label>
-        <input
-          id="branch"
-          type="text"
-          name="branch"
-          placeholder="Sucursal Central"
-          value={values.branch || ''}
-          onChange={handleChange}
-          className={inputClass}
-        />
-        {errors.branch && <span className={errorClass}>{errors.branch}</span>}
+        {errors.password && <span className={errorClass}>{errors.password}</span>}
+        <span className="text-xs text-gray-400 mt-1">
+          Mínimo 6 caracteres
+        </span>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import { FiLock, FiUnlock, FiUserMinus, FiUserCheck, FiKey, FiShield } from 'react-icons/fi';
+import { FiLock, FiUnlock, FiKey, FiShield } from 'react-icons/fi';
 import { Card, CardHeader } from '../../ui/Card';
 import { Button } from '../../ui/Button';
-import { isUserActive, isUserBlocked, isUserInactive } from '../../../utils/userStatusHelpers';
+import { isUserBlocked } from '../../../utils/userStatusHelpers';
 
 export const UserAccountStateCard = ({ user, onAction }) => {
   return (
@@ -14,9 +14,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
             Estado actual
           </label>
           <p className="mt-1 text-sm text-gray-100">
-            {isUserActive(user) && 'La cuenta está activa y operativa'}
-            {isUserBlocked(user) && 'La cuenta está bloqueada y no puede acceder'}
-            {isUserInactive(user) && !isUserBlocked(user) && 'La cuenta está desactivada'}
+            {isUserBlocked(user) ? 'La cuenta está bloqueada y no puede acceder' : 'La cuenta está activa y operativa'}
           </p>
         </div>
 
@@ -36,7 +34,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               <span>Cambiar rol</span>
             </Button>
 
-            {isUserActive(user) && (
+            {!isUserBlocked(user) && (
               <Button
                 variant="ghost"
                 size="sm"
@@ -57,30 +55,6 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               >
                 <FiUnlock />
                 <span>Desbloquear cuenta</span>
-              </Button>
-            )}
-
-            {isUserActive(user) && !isUserBlocked(user) && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onAction?.('deactivate', user)}
-                className="justify-start text-amber-400 hover:bg-amber-900/20"
-              >
-                <FiUserMinus />
-                <span>Desactivar cuenta</span>
-              </Button>
-            )}
-
-            {isUserInactive(user) && !isUserBlocked(user) && (
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onAction?.('activate', user)}
-                className="justify-start text-green-400 hover:bg-green-900/20"
-              >
-                <FiUserCheck />
-                <span>Activar cuenta</span>
               </Button>
             )}
 

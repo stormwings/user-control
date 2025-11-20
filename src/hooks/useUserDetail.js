@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { fetchUserById, fetchUserAuditLog } from '../utils/users';
+// TODO: Enable fetchUserAuditLog when audit endpoint is available in backend
+import { fetchUserById /* , fetchUserAuditLog */ } from '../utils/users';
 import { mapUserFromApi } from '../utils/userMappers';
 import { toast } from 'react-toastify';
 
@@ -31,20 +32,19 @@ export function useUserDetail(userId) {
   }, [userId]);
 
 
-  const loadAuditLog = useCallback(async (limit = 10) => {
-    if (!userId) return;
-
-    setIsLoadingAudit(true);
-
-    try {
-      const response = await fetchUserAuditLog(userId, limit);
-      setAuditLog(response.data || response || []);
-    } catch (err) {
-      console.error('Error fetching audit log:', err);
-    } finally {
-      setIsLoadingAudit(false);
-    }
-  }, [userId]);
+  // TODO: Enable when audit endpoint is available in backend
+  const loadAuditLog = useCallback(async (/* limit = 10 */) => {
+    // if (!userId) return;
+    // setIsLoadingAudit(true);
+    // try {
+    //   const response = await fetchUserAuditLog(userId, limit);
+    //   setAuditLog(response.data || response || []);
+    // } catch (err) {
+    //   console.error('Error fetching audit log:', err);
+    // } finally {
+    //   setIsLoadingAudit(false);
+    // }
+  }, [/* userId */]);
 
 
   useEffect(() => {

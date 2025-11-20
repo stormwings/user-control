@@ -1,8 +1,8 @@
-import { FiMoreVertical, FiEdit, FiEye, FiShield, FiLock, FiUnlock, FiKey } from 'react-icons/fi';
+import { FiMoreVertical, FiEye, FiShield, FiLock, FiUnlock, FiKey } from 'react-icons/fi';
 import { useState, useRef, useEffect } from 'react';
 import { UserRoleBadge } from './UserRoleBadge';
 import { UserStatusBadge } from './UserStatusBadge';
-import { isUserActive, isUserBlocked } from '../../../utils/userStatusHelpers';
+import { isUserBlocked } from '../../../utils/userStatusHelpers';
 
 export const UserRow = ({ user, index, onRowClick, onAction }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -59,10 +59,6 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
         <UserStatusBadge status={user.status} />
       </td>
 
-      <td className="px-4 py-3 text-sm text-gray-300">
-        {user.branch || '—'}
-      </td>
-
       <td className="px-4 py-3 text-sm text-gray-400">
         {user.lastLoginAt
           ? new Date(user.lastLoginAt).toLocaleDateString()
@@ -97,16 +93,6 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  handleAction('edit');
-                }}
-                className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
-              >
-                <FiEdit /> Editar
-              </button>
-
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
                   handleAction('changeRole');
                 }}
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
@@ -116,7 +102,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
 
               <div className="border-t border-gray-700 my-1" />
 
-              {isUserActive(user) && (
+              {!isUserBlocked(user) && (
                 <button
                   onClick={(e) => {
                     e.stopPropagation();

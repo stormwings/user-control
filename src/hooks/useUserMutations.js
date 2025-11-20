@@ -2,18 +2,14 @@ import { useState, useCallback } from 'react';
 import { toast } from 'react-toastify';
 import {
   createUser as apiCreateUser,
-  updateUser as apiUpdateUser,
   changeUserRole as apiChangeUserRole,
   blockUser as apiBlockUser,
   unblockUser as apiUnblockUser,
-  deactivateUser as apiDeactivateUser,
-  activateUser as apiActivateUser,
   resetUserPassword as apiResetUserPassword,
   deleteUser as apiDeleteUser,
 } from '../utils/users';
 import {
   mapCreateUserPayload,
-  mapUpdateUserPayload,
   mapUserFromApi,
 } from '../utils/userMappers';
 
@@ -37,28 +33,6 @@ export function useUserMutations() {
       console.error('Error creating user:', err);
       setError(err);
       toast.error(err.response?.data?.message || 'Error al crear usuario');
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-
-  const updateUser = useCallback(async (userId, formValues) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const payload = mapUpdateUserPayload(formValues);
-      const response = await apiUpdateUser(userId, payload);
-      const user = mapUserFromApi(response.data || response);
-
-      toast.success('Usuario actualizado exitosamente');
-      return user;
-    } catch (err) {
-      console.error('Error updating user:', err);
-      setError(err);
-      toast.error(err.response?.data?.message || 'Error al actualizar usuario');
       throw err;
     } finally {
       setIsLoading(false);
@@ -129,48 +103,6 @@ export function useUserMutations() {
   }, []);
 
 
-  const deactivateUser = useCallback(async (userId) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await apiDeactivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-
-      toast.success('Usuario desactivado exitosamente');
-      return user;
-    } catch (err) {
-      console.error('Error deactivating user:', err);
-      setError(err);
-      toast.error(err.response?.data?.message || 'Error al desactivar usuario');
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-
-  const activateUser = useCallback(async (userId) => {
-    setIsLoading(true);
-    setError(null);
-
-    try {
-      const response = await apiActivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-
-      toast.success('Usuario activado exitosamente');
-      return user;
-    } catch (err) {
-      console.error('Error activating user:', err);
-      setError(err);
-      toast.error(err.response?.data?.message || 'Error al activar usuario');
-      throw err;
-    } finally {
-      setIsLoading(false);
-    }
-  }, []);
-
-
   const resetPassword = useCallback(async (userId, newPassword) => {
     setIsLoading(true);
     setError(null);
@@ -212,12 +144,9 @@ export function useUserMutations() {
     isLoading,
     error,
     createUser,
-    updateUser,
     changeRole,
     blockUser,
     unblockUser,
-    deactivateUser,
-    activateUser,
     resetPassword,
     deleteUser,
   };

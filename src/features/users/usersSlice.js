@@ -4,12 +4,9 @@ import {
   fetchUsers as apiFetchUsers,
   fetchUserById as apiFetchUserById,
   createUser as apiCreateUser,
-  updateUser as apiUpdateUser,
   changeUserRole as apiChangeUserRole,
   blockUser as apiBlockUser,
   unblockUser as apiUnblockUser,
-  deactivateUser as apiDeactivateUser,
-  activateUser as apiActivateUser,
   resetUserPassword as apiResetUserPassword,
   deleteUser as apiDeleteUser,
 } from '../../utils/users';
@@ -86,22 +83,6 @@ export const createNewUser = createAsyncThunk(
   }
 );
 
-export const updateExistingUser = createAsyncThunk(
-  'users/updateUser',
-  async ({ userId, payload }, { rejectWithValue }) => {
-    try {
-      const response = await apiUpdateUser(userId, payload);
-      const user = mapUserFromApi(response.data || response);
-      toast.success('Usuario actualizado exitosamente');
-      return user;
-    } catch (error) {
-      const message = error.response?.data?.message || 'Error al actualizar usuario';
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
-
 export const changeRole = createAsyncThunk(
   'users/changeRole',
   async ({ userId, role }, { rejectWithValue }) => {
@@ -144,38 +125,6 @@ export const unblockUserAccount = createAsyncThunk(
       return user;
     } catch (error) {
       const message = error.response?.data?.message || 'Error al desbloquear usuario';
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
-
-export const deactivateUserAccount = createAsyncThunk(
-  'users/deactivateUser',
-  async (userId, { rejectWithValue }) => {
-    try {
-      const response = await apiDeactivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-      toast.success('Usuario desactivado exitosamente');
-      return user;
-    } catch (error) {
-      const message = error.response?.data?.message || 'Error al desactivar usuario';
-      toast.error(message);
-      return rejectWithValue(message);
-    }
-  }
-);
-
-export const activateUserAccount = createAsyncThunk(
-  'users/activateUser',
-  async (userId, { rejectWithValue }) => {
-    try {
-      const response = await apiActivateUser(userId);
-      const user = mapUserFromApi(response.data || response);
-      toast.success('Usuario activado exitosamente');
-      return user;
-    } catch (error) {
-      const message = error.response?.data?.message || 'Error al activar usuario';
       toast.error(message);
       return rejectWithValue(message);
     }
@@ -283,25 +232,6 @@ const usersSlice = createSlice({
         state.submitError = action.payload;
       })
 
-      .addCase(updateExistingUser.pending, (state) => {
-        state.isSubmitting = true;
-        state.submitError = null;
-      })
-      .addCase(updateExistingUser.fulfilled, (state, action) => {
-        state.isSubmitting = false;
-        const index = state.users.findIndex(u => u._id === action.payload._id);
-        if (index !== -1) {
-          state.users[index] = action.payload;
-        }
-        if (state.currentUser?._id === action.payload._id) {
-          state.currentUser = action.payload;
-        }
-      })
-      .addCase(updateExistingUser.rejected, (state, action) => {
-        state.isSubmitting = false;
-        state.submitError = action.payload;
-      })
-
       .addCase(changeRole.fulfilled, (state, action) => {
         const index = state.users.findIndex(u => u._id === action.payload._id);
         if (index !== -1) state.users[index] = action.payload;
@@ -313,16 +243,6 @@ const usersSlice = createSlice({
         if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
       })
       .addCase(unblockUserAccount.fulfilled, (state, action) => {
-        const index = state.users.findIndex(u => u._id === action.payload._id);
-        if (index !== -1) state.users[index] = action.payload;
-        if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
-      })
-      .addCase(deactivateUserAccount.fulfilled, (state, action) => {
-        const index = state.users.findIndex(u => u._id === action.payload._id);
-        if (index !== -1) state.users[index] = action.payload;
-        if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
-      })
-      .addCase(activateUserAccount.fulfilled, (state, action) => {
         const index = state.users.findIndex(u => u._id === action.payload._id);
         if (index !== -1) state.users[index] = action.payload;
         if (state.currentUser?._id === action.payload._id) state.currentUser = action.payload;
