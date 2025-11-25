@@ -1,0 +1,10 @@
+# Cypress artifacts
+screenshots/
+videos/
+downloads/
+
+# Cypress cache (usually in node_modules)
+.cache/
+
+# Debug logs
+*.log

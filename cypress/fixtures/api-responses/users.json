@@ -1,0 +1,49 @@
+{
+  "usersList": {
+    "success": true,
+    "data": [
+      {
+        "_id": "user-1",
+        "name": "Admin User",
+        "email": "admin@test.com",
+        "role": "ADMIN",
+        "isActive": true,
+        "createdAt": "2025-01-01T00:00:00.000Z"
+      },
+      {
+        "_id": "user-2",
+        "name": "Seller User",
+        "email": "seller@test.com",
+        "role": "SELLER",
+        "isActive": true,
+        "createdAt": "2025-01-05T00:00:00.000Z"
+      },
+      {
+        "_id": "user-3",
+        "name": "Inactive User",
+        "email": "inactive@test.com",
+        "role": "VIEWER",
+        "isActive": false,
+        "createdAt": "2025-01-10T00:00:00.000Z"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "limit": 10,
+      "total": 3,
+      "totalPages": 1
+    }
+  },
+  "userDetail": {
+    "success": true,
+    "data": {
+      "_id": "user-1",
+      "name": "Admin User",
+      "email": "admin@test.com",
+      "role": "ADMIN",
+      "isActive": true,
+      "createdAt": "2025-01-01T00:00:00.000Z",
+      "lastLogin": "2025-01-15T12:00:00.000Z"
+    }
+  }
+}

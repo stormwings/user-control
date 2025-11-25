@@ -1,0 +1,28 @@
+{
+  "adminUser": {
+    "_id": "admin-123",
+    "name": "Admin User",
+    "email": "admin@test.com",
+    "role": "ADMIN",
+    "isActive": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  "sellerUser": {
+    "_id": "seller-456",
+    "name": "Seller User",
+    "email": "seller@test.com",
+    "role": "SELLER",
+    "isActive": true,
+    "createdAt": "2025-01-01T00:00:00.000Z"
+  },
+  "credentials": {
+    "admin": {
+      "email": "admin@test.com",
+      "password": "admin123"
+    },
+    "seller": {
+      "email": "seller@test.com",
+      "password": "seller123"
+    }
+  }
+}
