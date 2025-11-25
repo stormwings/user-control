@@ -14,7 +14,7 @@ export const UserMetaInfo = ({ user }) => {
   };
 
   return (
-    <Card>
+    <Card dataCy="user-meta-info-card">
       <CardHeader title="Información del Sistema" />
 
       <div className="space-y-4">
@@ -23,7 +23,7 @@ export const UserMetaInfo = ({ user }) => {
             <FiCalendar className="text-xs" />
             Fecha de registro
           </label>
-          <p className="mt-1 text-sm text-gray-100">
+          <p className="mt-1 text-sm text-gray-100" data-cy="user-created-at">
             {formatDate(user?.createdAt)}
           </p>
         </div>
@@ -33,7 +33,7 @@ export const UserMetaInfo = ({ user }) => {
             <FiClock className="text-xs" />
             Último acceso
           </label>
-          <p className="mt-1 text-sm text-gray-100">
+          <p className="mt-1 text-sm text-gray-100" data-cy="user-last-login-at">
             {formatDate(user?.lastLoginAt) || 'Nunca'}
           </p>
         </div>
@@ -43,7 +43,7 @@ export const UserMetaInfo = ({ user }) => {
             <FiClock className="text-xs" />
             Última actualización
           </label>
-          <p className="mt-1 text-sm text-gray-100">
+          <p className="mt-1 text-sm text-gray-100" data-cy="user-updated-at">
             {formatDate(user?.updatedAt)}
           </p>
         </div>
@@ -54,7 +54,7 @@ export const UserMetaInfo = ({ user }) => {
               <FiUser className="text-xs" />
               Creado por
             </label>
-            <p className="mt-1 text-sm text-gray-100">
+            <p className="mt-1 text-sm text-gray-100" data-cy="user-created-by">
               {user.createdBy}
             </p>
           </div>

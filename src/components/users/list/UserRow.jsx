@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { UserRoleBadge } from './UserRoleBadge';
 import { UserStatusBadge } from './UserStatusBadge';
 import { isUserBlocked } from '../../../utils/userStatusHelpers';
+import { USERS_TEST_IDS, withValue } from '../../../constants/testIds';
 
 export const UserRow = ({ user, index, onRowClick, onAction }) => {
   const [showMenu, setShowMenu] = useState(false);
@@ -30,6 +31,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
     <tr
       className="border-b border-gray-700 hover:bg-gray-800/50 transition-colors cursor-pointer"
       onClick={() => onRowClick?.(user._id)}
+      data-cy={withValue(USERS_TEST_IDS.USERS_TABLE_ROW, user._id)}
     >
       <td className="px-4 py-3 text-sm text-gray-400">
         #{index + 1}
@@ -79,13 +81,14 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
           </button>
 
           {showMenu && (
-            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-700 bg-gray-800 shadow-lg py-1">
+            <div className="absolute right-0 top-full mt-1 z-10 w-48 rounded-lg border border-gray-700 bg-gray-800 shadow-lg py-1" data-cy={withValue('user-actions-menu', user._id)}>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleAction('view');
                 }}
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
+                data-cy={withValue('user-action-view', user._id)}
               >
                 <FiEye /> Ver detalle
               </button>
@@ -96,6 +99,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   handleAction('changeRole');
                 }}
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
+                data-cy={withValue('user-action-change-role', user._id)}
               >
                 <FiShield /> Cambiar rol
               </button>
@@ -109,6 +113,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     handleAction('block');
                   }}
                   className="flex w-full items-center gap-2 px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 transition-colors"
+                  data-cy={withValue('user-action-block', user._id)}
                 >
                   <FiLock /> Bloquear
                 </button>
@@ -121,6 +126,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                     handleAction('unblock');
                   }}
                   className="flex w-full items-center gap-2 px-4 py-2 text-sm text-green-400 hover:bg-green-900/20 transition-colors"
+                  data-cy={withValue('user-action-unblock', user._id)}
                 >
                   <FiUnlock /> Desbloquear
                 </button>
@@ -132,6 +138,7 @@ export const UserRow = ({ user, index, onRowClick, onAction }) => {
                   handleAction('resetPassword');
                 }}
                 className="flex w-full items-center gap-2 px-4 py-2 text-sm text-gray-300 hover:bg-gray-700 transition-colors"
+                data-cy={withValue('user-action-reset-password', user._id)}
               >
                 <FiKey /> Restablecer contraseña
               </button>

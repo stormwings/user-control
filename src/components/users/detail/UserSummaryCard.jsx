@@ -1,9 +1,10 @@
 import { FiMail } from 'react-icons/fi';
 import { Card, CardHeader } from '../../ui/Card';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UserSummaryCard = ({ user }) => {
   return (
-    <Card>
+    <Card dataCy={USERS_TEST_IDS.USER_DETAIL_CARD}>
       <CardHeader title="Información Básica" />
 
       <div className="space-y-4">

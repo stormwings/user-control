@@ -1,4 +1,5 @@
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { ADMIN_TEST_IDS, withIndex } from "../../constants/testIds";
 
 export const Pagination = ({
   currentPage,
@@ -26,8 +27,8 @@ export const Pagination = ({
   const pageNumbers = getPageNumbers();
 
   return (
-    <div className="mt-4 flex items-center justify-between border-t border-gray-700 pt-4">
-      <div className="text-xs text-gray-400">
+    <div className="mt-4 flex items-center justify-between border-t border-gray-700 pt-4" data-cy={ADMIN_TEST_IDS.PAGINATION}>
+      <div className="text-xs text-gray-400" data-cy={ADMIN_TEST_IDS.PAGINATION_INFO}>
         Mostrando {startIndex + 1}-{endIndex} de {totalItems}
       </div>
 
@@ -38,6 +39,7 @@ export const Pagination = ({
           disabled={currentPage === 1}
           className="inline-flex items-center justify-center rounded-md border border-gray-600 bg-gray-800 p-2 text-xs hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
           title="Página anterior"
+          data-cy={ADMIN_TEST_IDS.PAGINATION_PREV}
         >
           <FiChevronLeft />
         </button>
@@ -62,6 +64,7 @@ export const Pagination = ({
                       ? "bg-[var(--blackpos-primary)] text-white"
                       : "bg-gray-800 text-gray-300 hover:bg-gray-700"
                   }`}
+                  data-cy={withIndex(ADMIN_TEST_IDS.PAGINATION_PAGE, page)}
                 >
                   {page}
                 </button>
@@ -76,6 +79,7 @@ export const Pagination = ({
           disabled={currentPage === totalPages}
           className="inline-flex items-center justify-center rounded-md border border-gray-600 bg-gray-800 p-2 text-xs hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50 transition-colors"
           title="Página siguiente"
+          data-cy={ADMIN_TEST_IDS.PAGINATION_NEXT}
         >
           <FiChevronRight />
         </button>

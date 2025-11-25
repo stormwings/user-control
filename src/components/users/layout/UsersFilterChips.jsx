@@ -1,6 +1,7 @@
 import { FiUserCheck, FiUserMinus, FiShield, FiUsers } from 'react-icons/fi';
 import { UserStatus, UserRole } from '../../../utils/user';
 import { FilterButton } from '../../common/FilterButton';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole }) => {
   return (
@@ -11,6 +12,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeStatus(UserStatus.ACTIVE)}
           icon={FiUserCheck}
           title="Usuarios activos"
+          dataCy={`${USERS_TEST_IDS.USERS_FILTER_STATUS}-active`}
         >
           Activos
         </FilterButton>
@@ -20,6 +22,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeStatus(UserStatus.INACTIVE)}
           icon={FiUserMinus}
           title="Usuarios inactivos"
+          dataCy={`${USERS_TEST_IDS.USERS_FILTER_STATUS}-inactive`}
         >
           Inactivos
         </FilterButton>
@@ -31,6 +34,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeRole(UserRole.ADMIN)}
           icon={FiShield}
           title="Solo administradores"
+          dataCy={`${USERS_TEST_IDS.USERS_FILTER_ROLE}-admin`}
         >
           Admin
         </FilterButton>
@@ -40,6 +44,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
           onClick={() => onChangeRole(UserRole.USER)}
           icon={FiUsers}
           title="Solo usuarios regulares"
+          dataCy={`${USERS_TEST_IDS.USERS_FILTER_ROLE}-user`}
         >
           Usuario
         </FilterButton>
@@ -53,6 +58,7 @@ export const UsersFilterChips = ({ status, onChangeStatus, role, onChangeRole })
             onChangeRole('all');
           }}
           title="Mostrar todos"
+          dataCy={USERS_TEST_IDS.USERS_FILTER_CLEAR}
         >
           Todos
         </FilterButton>

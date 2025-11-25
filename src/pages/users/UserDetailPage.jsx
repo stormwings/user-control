@@ -11,6 +11,7 @@ import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
 import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
 import UnblockUserDialog from '../../components/users/dialogs/UnblockUserDialog';
 import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
+import { USERS_TEST_IDS } from '../../constants/testIds';
 
 function UserDetailPage() {
   const { userId } = useParams();
@@ -59,7 +60,7 @@ function UserDetailPage() {
   }
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 p-6" data-cy={USERS_TEST_IDS.USER_DETAIL_PAGE}>
       <UserDetailHeader user={user} onAction={handleAction} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
