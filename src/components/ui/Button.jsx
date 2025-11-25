@@ -19,6 +19,7 @@ export const Button = ({
   title,
   className = "",
   type = "button",
+  dataCy,
 }) => {
   const baseClasses = "inline-flex items-center justify-center gap-2 rounded-md font-medium transition-colors disabled:opacity-60 disabled:cursor-not-allowed";
   const variantClasses = buttonVariants[variant] || buttonVariants.primary;
@@ -30,6 +31,7 @@ export const Button = ({
       onClick={disabled ? undefined : onClick}
       title={title}
       disabled={disabled}
+      data-cy={dataCy}
       className={`${baseClasses} ${variantClasses} ${sizeClasses} ${className}`}
     >
       {children}

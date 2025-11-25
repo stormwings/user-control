@@ -1,14 +1,21 @@
 import { Outlet } from "react-router-dom";
 import SidebarLeft from "../components/layout/Sidebar";
+import { LAYOUT_TEST_IDS } from "../constants/testIds";
 
 const Dashboard = () => {
   return (
-    <div className="flex h-screen w-full gap-3 p-2">
+    <div
+      className="flex h-screen w-full gap-3 p-2"
+      data-cy={LAYOUT_TEST_IDS.DASHBOARD_CONTAINER}
+    >
       <aside className="h-full w-20 md:w-56 shrink-0 rounded-3xl border border-gray-700 bg-gray-800 shadow-sm transition-colors">
         <SidebarLeft />
       </aside>
 
-      <main className="flex-1 overflow-y-auto rounded-3xl border border-gray-700 bg-gray-900 p-4 md:p-8 transition-colors">
+      <main
+        className="flex-1 overflow-y-auto rounded-3xl border border-gray-700 bg-gray-900 p-4 md:p-8 transition-colors"
+        data-cy={LAYOUT_TEST_IDS.DASHBOARD_MAIN_CONTENT}
+      >
         <Outlet />
       </main>
     </div>

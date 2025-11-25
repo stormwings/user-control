@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { login, reset } from "../features/auth/authSlice";
+import { AUTH_TEST_IDS } from "../constants/testIds";
 
 const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -40,12 +41,14 @@ const Login = () => {
         min-h-screen w-full flex items-center justify-center p-4
         bg-gradient-to-tr from-gray-900 via-gray-800 to-gray-900
       "
+      data-cy={AUTH_TEST_IDS.LOGIN_PAGE}
       data-testid="login-page"
     >
       <form
         onSubmit={handleSubmit}
         aria-label="Formulario de ingreso"
         className="w-[400px] max-w-full rounded-xl bg-gray-800 p-12 pt-12 shadow-card transition-colors"
+        data-cy={AUTH_TEST_IDS.LOGIN_FORM}
       >
         <h1 className="mb-6 text-center text-2xl font-f1 text-gray-200">
           User <span className="text-brand-hover">Control</span>
@@ -67,6 +70,7 @@ const Login = () => {
             onChange={onChange}
             autoComplete="username"
             required
+            data-cy={AUTH_TEST_IDS.LOGIN_EMAIL_INPUT}
             className="
               mt-2 rounded-lg border border-gray-600
               bg-gray-700 px-3 py-3
@@ -96,6 +100,7 @@ const Login = () => {
             onChange={onChange}
             autoComplete="current-password"
             required
+            data-cy={AUTH_TEST_IDS.LOGIN_PASSWORD_INPUT}
             className="
               mt-2 rounded-lg border border-gray-600
               bg-gray-700 px-3 py-3
@@ -112,6 +117,7 @@ const Login = () => {
         <button
           type="submit"
           disabled={isLoading}
+          data-cy={AUTH_TEST_IDS.LOGIN_SUBMIT_BUTTON}
           className="
             w-full rounded-full bg-brand-hover px-4 py-3 font-bold text-white
             shadow-btn transition active:translate-y-[1px]
@@ -124,6 +130,7 @@ const Login = () => {
         <div className="mt-4 text-center">
           <a
             href="/"
+            data-cy={AUTH_TEST_IDS.LOGIN_BACK_HOME_LINK}
             className="font-medium text-brand-hover hover:text-opacity-80"
           >
             Volver al inicio
