@@ -160,50 +160,80 @@ export const interceptUsers = {
    */
   list: (users = null, alias = 'usersListRequest') => {
     if (users) {
-      cy.intercept('GET', wildcardEndpoint(API_ENDPOINTS.ADMIN.USERS), {
+      cy.intercept('GET', wildcardEndpoint(API_ENDPOINTS.AUTH.USERS), {
         statusCode: HTTP_STATUS.OK,
-        body: {
-          success: true,
-          data: users,
-          pagination: {
-            page: 1,
-            limit: 10,
-            total: users.length,
-            totalPages: 1,
-          },
-        },
+        body: users,
       }).as(alias);
     } else {
-      cy.intercept('GET', wildcardEndpoint(API_ENDPOINTS.ADMIN.USERS), {
+      cy.intercept('GET', wildcardEndpoint(API_ENDPOINTS.AUTH.USERS), {
         statusCode: HTTP_STATUS.OK,
-        fixture: 'api-responses/users.json',
+        fixture: 'api-responses/users-list.json',
       }).as(alias);
     }
   },
 
   /**
-   * Intercepts user detail API call
+   * Intercepts users list with pagination
+   * @param {Object} options - Options { data, pagination }
+   * @param {string} alias - Cypress alias
+   */
+  listPaginated: (options = {}, alias = 'usersListRequest') => {
+    cy.fixture('api-responses/users-list.json').then((defaultData) => {
+      const responseData = options.data || defaultData;
+      const pagination = options.pagination || {
+        totalCount: responseData.length,
+        totalPages: 1,
+        currentPage: 1,
+        pageSize: 10,
+        hasNextPage: false,
+        hasPreviousPage: false,
+      };
+
+      cy.intercept('GET', wildcardEndpoint(API_ENDPOINTS.AUTH.USERS), {
+        statusCode: HTTP_STATUS.OK,
+        body: {
+          data: responseData,
+          pagination,
+        },
+      }).as(alias);
+    });
+  },
+
+  /**
+   * Intercepts user detail API call (uses /api/auth/users/:id as per API docs)
    * @param {string} userId - User ID
    * @param {Object} userData - User data (optional)
    * @param {string} alias - Cypress alias
    */
   detail: (userId, userData = null, alias = 'userDetailRequest') => {
-    const endpoint = API_ENDPOINTS.ADMIN.USER_DETAIL(userId);
+    const endpoint = `${API_ENDPOINTS.AUTH.USERS}/${userId}`;
 
     if (userData) {
       cy.intercept('GET', wildcardEndpoint(endpoint), {
         statusCode: HTTP_STATUS.OK,
-        body: {
-          success: true,
-          data: userData,
-        },
+        body: userData,
       }).as(alias);
     } else {
-      cy.intercept('GET', wildcardEndpoint(endpoint), {
-        statusCode: HTTP_STATUS.OK,
-        fixture: 'api-responses/users.json',
-      }).as(alias);
+      cy.fixture('users').then((users) => {
+        cy.intercept('GET', wildcardEndpoint(endpoint), {
+          statusCode: HTTP_STATUS.OK,
+          body: users.adminUser,
+        }).as(alias);
+      });
     }
+  },
+
+  /**
+   * Intercepts user detail not found
+   * @param {string} userId - User ID
+   * @param {string} alias - Cypress alias
+   */
+  detailNotFound: (userId, alias = 'userDetailRequest') => {
+    const endpoint = `${API_ENDPOINTS.AUTH.USERS}/${userId}`;
+    cy.intercept('GET', wildcardEndpoint(endpoint), {
+      statusCode: HTTP_STATUS.NOT_FOUND,
+      body: { message: 'User not found' },
+    }).as(alias);
   },
 
   /**
@@ -223,13 +253,14 @@ export const interceptUsers = {
    * Intercepts user update API call
    * @param {string} userId - User ID
    * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
    * @param {string} alias - Cypress alias
    */
-  update: (userId, statusCode = HTTP_STATUS.OK, alias = 'updateUserRequest') => {
+  update: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'updateUserRequest') => {
     const endpoint = API_ENDPOINTS.ADMIN.USER_DETAIL(userId);
     cy.intercept('PUT', wildcardEndpoint(endpoint), {
       statusCode,
-      body: { success: true, message: 'User updated successfully' },
+      body: response || { success: true, message: 'User updated successfully' },
     }).as(alias);
   },
 
@@ -244,6 +275,96 @@ export const interceptUsers = {
     cy.intercept('DELETE', wildcardEndpoint(endpoint), {
       statusCode,
       body: { success: true, message: 'User deleted successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts change role API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} updatedUser - Updated user data (optional)
+   * @param {string} alias - Cypress alias
+   */
+  changeRole: (userId, statusCode = HTTP_STATUS.OK, updatedUser = null, alias = 'changeRoleRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_ROLE(userId);
+    cy.intercept('PATCH', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: updatedUser || { success: true, message: 'Role changed successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts block user API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
+   * @param {string} alias - Cypress alias
+   */
+  block: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'blockUserRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_BLOCK(userId);
+    cy.intercept('POST', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: response || { success: true, message: 'User blocked successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts unblock user API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
+   * @param {string} alias - Cypress alias
+   */
+  unblock: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'unblockUserRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_UNBLOCK(userId);
+    cy.intercept('POST', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: response || { success: true, message: 'User unblocked successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts reset password API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
+   * @param {string} alias - Cypress alias
+   */
+  resetPassword: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'resetPasswordRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_RESET_PASSWORD(userId);
+    cy.intercept('POST', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: response || { success: true, message: 'Password reset successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts activate user API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
+   * @param {string} alias - Cypress alias
+   */
+  activate: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'activateUserRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_ACTIVATE(userId);
+    cy.intercept('POST', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: response || { success: true, message: 'User activated successfully' },
+    }).as(alias);
+  },
+
+  /**
+   * Intercepts deactivate user API call
+   * @param {string} userId - User ID
+   * @param {number} statusCode - HTTP status code
+   * @param {Object} response - Response body (optional)
+   * @param {string} alias - Cypress alias
+   */
+  deactivate: (userId, statusCode = HTTP_STATUS.OK, response = null, alias = 'deactivateUserRequest') => {
+    const endpoint = API_ENDPOINTS.ADMIN.USER_DEACTIVATE(userId);
+    cy.intercept('POST', wildcardEndpoint(endpoint), {
+      statusCode,
+      body: response || { success: true, message: 'User deactivated successfully' },
     }).as(alias);
   },
 };
