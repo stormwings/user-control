@@ -10,6 +10,7 @@ import ChangeRoleDialog from '../../components/users/dialogs/ChangeRoleDialog';
 import BlockUserDialog from '../../components/users/dialogs/BlockUserDialog';
 import UnblockUserDialog from '../../components/users/dialogs/UnblockUserDialog';
 import ResetPasswordDialog from '../../components/users/dialogs/ResetPasswordDialog';
+import { USERS_TEST_IDS } from '../../constants/testIds';
 
 function UsersListPage() {
   const navigate = useNavigate();
@@ -46,7 +47,7 @@ function UsersListPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 p-6" data-cy={USERS_TEST_IDS.USERS_PAGE}>
       <UsersPageHeader
         title="Gestión de Usuarios"
         subtitle="Administra usuarios, roles y permisos del sistema"

@@ -6,11 +6,14 @@ const chipTones = {
   red: "bg-red-900/30 text-red-400",
 };
 
-export const Chip = ({ children, tone = "gray" }) => {
+export const Chip = ({ children, tone = "gray", dataCy }) => {
   const toneClasses = chipTones[tone] || chipTones.gray;
 
   return (
-    <span className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${toneClasses}`}>
+    <span
+      data-cy={dataCy}
+      className={`rounded-full px-2 py-0.5 text-[11px] font-medium ${toneClasses}`}
+    >
       {children}
     </span>
   );
