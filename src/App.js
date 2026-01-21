@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,33 +15,49 @@ import UsersListPage from "./pages/users/UsersListPage";
 import UserCreatePage from "./pages/users/UserCreatePage";
 import UserDetailPage from "./pages/users/UserDetailPage";
 
+import { setAuthNavigator } from "./utils/api";
+
+// Componente interno para configurar el navegador
+function AppRoutes() {
+  const navigate = useNavigate();
+
+  // Configurar navegador para redirecciones de autenticación
+  useEffect(() => {
+    setAuthNavigator(navigate);
+  }, [navigate]);
+
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        >
+          <Route path="" element={<Content />} />
+
+          <Route path="users" element={<UsersListPage />} />
+          <Route path="users/new" element={<UserCreatePage />} />
+          <Route path="users/:userId" element={<UserDetailPage />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </div>
+  );
+}
+
 function App() {
   return (
     <>
       <Router>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            >
-              <Route path="" element={<Content />} />
-
-              <Route path="users" element={<UsersListPage />} />
-              <Route path="users/new" element={<UserCreatePage />} />
-              <Route path="users/:userId" element={<UserDetailPage />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </div>
+        <AppRoutes />
       </Router>
       <ToastContainer />
     </>
