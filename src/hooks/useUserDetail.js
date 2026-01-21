@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 
 export function useUserDetail(userId) {
   const [user, setUser] = useState(null);
-  const [auditLog, setAuditLog] = useState([]);
+  const [auditLog] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoadingAudit, setIsLoadingAudit] = useState(false);
+  const [isLoadingAudit] = useState(false);
   const [error, setError] = useState(null);
 
 

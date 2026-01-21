@@ -263,7 +263,7 @@ export const withState = (baseId, state) => `${baseId}-${state}`;
 // EXPORTS
 // =============================================================================
 
-export default {
+export const TEST_IDS = {
   AUTH: AUTH_TEST_IDS,
   LAYOUT: LAYOUT_TEST_IDS,
   UI: UI_TEST_IDS,
@@ -277,3 +277,5 @@ export default {
   withValue,
   withState,
 };
+
+export default TEST_IDS;

@@ -1,6 +1,5 @@
 import { FiUnlock } from 'react-icons/fi';
 import useUserMutations from '../../../hooks/useUserMutations';
-import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UnblockUserDialog = ({ open, user, onClose, onSuccess }) => {
   const { unblockUser, isLoading } = useUserMutations();

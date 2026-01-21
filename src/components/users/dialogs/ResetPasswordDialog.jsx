@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FiKey, FiX } from 'react-icons/fi';
 import { Button } from '../../ui/Button';
 import useUserMutations from '../../../hooks/useUserMutations';
-import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
   const [newPassword, setNewPassword] = useState('');
