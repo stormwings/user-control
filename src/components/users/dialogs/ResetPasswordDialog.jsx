@@ -52,6 +52,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
         className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
+        data-cy="user-reset-password-dialog"
       >
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
@@ -87,6 +88,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
+              data-cy="user-reset-password-input"
               className="w-full rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-gray-100 outline-none transition-colors focus:border-brand-hover"
             />
           </div>
@@ -101,6 +103,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="••••••••"
               disabled={isLoading}
+              data-cy="user-reset-password-confirm-input"
               className="w-full rounded-lg border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-gray-100 outline-none transition-colors focus:border-brand-hover"
             />
           </div>
@@ -119,6 +122,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
             variant="ghost"
             onClick={handleClose}
             disabled={isLoading}
+            dataCy="user-reset-password-cancel"
           >
             Cancelar
           </Button>
@@ -126,6 +130,7 @@ export const ResetPasswordDialog = ({ open, user, onClose, onSuccess }) => {
             variant="primary"
             onClick={handleConfirm}
             disabled={isLoading}
+            dataCy="user-reset-password-confirm"
           >
             {isLoading ? 'Restableciendo...' : 'Restablecer'}
           </Button>

@@ -1,3 +1,5 @@
+import { USERS_TEST_IDS } from '../../../constants/testIds';
+
 export const UserProfileFields = ({ values, onChange, errors }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +25,7 @@ export const UserProfileFields = ({ values, onChange, errors }) => {
           onChange={handleChange}
           required
           className={inputClass}
+          data-cy={USERS_TEST_IDS.USER_FORM_NAME_INPUT}
         />
         {errors.name && <span className={errorClass}>{errors.name}</span>}
       </div>
@@ -41,6 +44,7 @@ export const UserProfileFields = ({ values, onChange, errors }) => {
           autoComplete="username"
           required
           className={inputClass}
+          data-cy={USERS_TEST_IDS.USER_FORM_EMAIL_INPUT}
         />
         {errors.email && <span className={errorClass}>{errors.email}</span>}
       </div>
@@ -60,6 +64,7 @@ export const UserProfileFields = ({ values, onChange, errors }) => {
           required
           minLength={6}
           className={inputClass}
+          data-cy={USERS_TEST_IDS.USER_FORM_PASSWORD_INPUT}
         />
         {errors.password && <span className={errorClass}>{errors.password}</span>}
         <span className="text-xs text-gray-400 mt-1">

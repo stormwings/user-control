@@ -3,6 +3,7 @@ import { FiX, FiShield } from 'react-icons/fi';
 import { Button } from '../../ui/Button';
 import { UserRoleSelect } from '../form/UserRoleSelect';
 import useUserMutations from '../../../hooks/useUserMutations';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
   const [selectedRole, setSelectedRole] = useState(user?.role || '');
@@ -27,6 +28,7 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
         className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
+        data-cy={USERS_TEST_IDS.USER_CHANGE_ROLE_DIALOG}
       >
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
@@ -64,6 +66,7 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
             variant="ghost"
             onClick={onClose}
             disabled={isLoading}
+            dataCy="user-change-role-cancel"
           >
             Cancelar
           </Button>
@@ -71,6 +74,7 @@ export const ChangeRoleDialog = ({ open, user, onClose, onSuccess }) => {
             variant="primary"
             onClick={handleConfirm}
             disabled={isLoading || !selectedRole}
+            dataCy="user-change-role-confirm"
           >
             {isLoading ? 'Cambiando...' : 'Cambiar Rol'}
           </Button>

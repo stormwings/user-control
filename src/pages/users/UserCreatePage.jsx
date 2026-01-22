@@ -23,7 +23,7 @@ function UserCreatePage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-6 p-6" data-cy="user-create-page">
       <UsersPageHeader
         title="Nuevo Usuario"
         subtitle="Crea un nuevo usuario para el sistema"

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { Input } from '../../ui/Input';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UsersSearchInput = ({ value, onChange, placeholder = "Buscar usuario...", debounceMs = 1500 }) => {
   const [localValue, setLocalValue] = useState(value);
@@ -49,6 +50,7 @@ export const UsersSearchInput = ({ value, onChange, placeholder = "Buscar usuari
         value={localValue}
         onChange={handleChange}
         className="pl-10"
+        dataCy={USERS_TEST_IDS.USERS_SEARCH}
       />
     </div>
   );

@@ -3,12 +3,14 @@ export const FilterButton = ({
   active,
   onClick,
   title,
-  icon: Icon
+  icon: Icon,
+  dataCy,
 }) => (
   <button
     type="button"
     onClick={onClick}
     title={title}
+    data-cy={dataCy}
     className={`rounded-full px-3 py-1.5 text-xs font-medium transition-colors ${
       active
         ? "bg-[var(--blackpos-primary)] text-white"

@@ -5,7 +5,7 @@ import { isUserBlocked } from '../../../utils/userStatusHelpers';
 
 export const UserAccountStateCard = ({ user, onAction }) => {
   return (
-    <Card>
+    <Card dataCy="user-account-state-card">
       <CardHeader title="Estado de Cuenta" />
 
       <div className="space-y-4">
@@ -13,7 +13,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
           <label className="text-xs font-medium text-gray-400">
             Estado actual
           </label>
-          <p className="mt-1 text-sm text-gray-100">
+          <p className="mt-1 text-sm text-gray-100" data-cy="user-account-state-text">
             {isUserBlocked(user) ? 'La cuenta está bloqueada y no puede acceder' : 'La cuenta está activa y operativa'}
           </p>
         </div>
@@ -29,6 +29,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               size="sm"
               onClick={() => onAction?.('changeRole', user)}
               className="justify-start"
+              dataCy="user-action-change-role-button"
             >
               <FiShield />
               <span>Cambiar rol</span>
@@ -40,6 +41,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 size="sm"
                 onClick={() => onAction?.('block', user)}
                 className="justify-start text-red-400 hover:bg-red-900/20"
+                dataCy="user-action-block-button"
               >
                 <FiLock />
                 <span>Bloquear cuenta</span>
@@ -52,6 +54,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
                 size="sm"
                 onClick={() => onAction?.('unblock', user)}
                 className="justify-start text-green-400 hover:bg-green-900/20"
+                dataCy="user-action-unblock-button"
               >
                 <FiUnlock />
                 <span>Desbloquear cuenta</span>
@@ -63,6 +66,7 @@ export const UserAccountStateCard = ({ user, onAction }) => {
               size="sm"
               onClick={() => onAction?.('resetPassword', user)}
               className="justify-start"
+              dataCy="user-action-reset-password-button"
             >
               <FiKey />
               <span>Restablecer contraseña</span>

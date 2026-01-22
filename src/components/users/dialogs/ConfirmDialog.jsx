@@ -11,6 +11,7 @@ export const ConfirmDialog = ({
   onConfirm,
   onClose,
   isLoading = false,
+  dataCy = 'confirm-dialog',
 }) => {
   if (!open) return null;
 
@@ -26,6 +27,7 @@ export const ConfirmDialog = ({
         className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
+        data-cy={dataCy}
       >
         <div className="flex items-start justify-between p-6 pb-4">
           <div className="flex items-start gap-3">
@@ -42,6 +44,7 @@ export const ConfirmDialog = ({
             onClick={onClose}
             className="rounded-lg p-1 text-gray-400 hover:bg-gray-700 transition-colors"
             disabled={isLoading}
+            data-cy={`${dataCy}-close`}
           >
             <FiX className="text-xl" />
           </button>
@@ -58,6 +61,7 @@ export const ConfirmDialog = ({
             variant="ghost"
             onClick={onClose}
             disabled={isLoading}
+            dataCy={`${dataCy}-cancel`}
           >
             {cancelText}
           </Button>
@@ -66,6 +70,7 @@ export const ConfirmDialog = ({
             onClick={onConfirm}
             disabled={isLoading}
             className={variant === 'danger' ? 'bg-red-600 hover:bg-red-700' : ''}
+            dataCy={`${dataCy}-confirm`}
           >
             {isLoading ? 'Procesando...' : confirmText}
           </Button>

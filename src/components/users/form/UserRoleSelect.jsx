@@ -1,4 +1,5 @@
 import { UserRole, UserRoleLabels } from '../../../utils/user';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UserRoleSelect = ({ value, onChange, disabled = false, required = true }) => {
   return (
@@ -15,6 +16,7 @@ export const UserRoleSelect = ({ value, onChange, disabled = false, required = t
         onChange={(e) => onChange(e.target.value)}
         disabled={disabled}
         required={required}
+        data-cy={USERS_TEST_IDS.USER_FORM_ROLE_SELECT}
         className="rounded-lg border border-gray-600 bg-gray-700 px-3 py-3 text-gray-100 outline-none transition-colors focus:border-brand-hover focus:bg-gray-600 focus:ring-4 focus:ring-[rgba(64,153,175,0.15)] disabled:opacity-60 disabled:cursor-not-allowed"
       >
         <option value="">Seleccionar rol...</option>

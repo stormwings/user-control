@@ -1,0 +1,79 @@
+[
+  {
+    "_id": "admin-123",
+    "name": "Admin User",
+    "email": "admin@test.com",
+    "role": "ADMIN",
+    "isAdmin": true,
+    "status": "ACTIVE",
+    "createdAt": "2025-01-01T00:00:00.000Z",
+    "updatedAt": "2025-01-15T10:30:00.000Z",
+    "lastLoginAt": "2025-01-15T10:30:00.000Z"
+  },
+  {
+    "_id": "seller-456",
+    "name": "Seller User",
+    "email": "seller@test.com",
+    "role": "SELLER",
+    "isAdmin": false,
+    "status": "ACTIVE",
+    "createdAt": "2025-01-02T00:00:00.000Z",
+    "updatedAt": "2025-01-14T08:15:00.000Z",
+    "lastLoginAt": "2025-01-14T08:15:00.000Z"
+  },
+  {
+    "_id": "viewer-789",
+    "name": "Viewer User",
+    "email": "viewer@test.com",
+    "role": "VIEWER",
+    "isAdmin": false,
+    "status": "ACTIVE",
+    "createdAt": "2025-01-03T00:00:00.000Z",
+    "updatedAt": "2025-01-13T14:45:00.000Z",
+    "lastLoginAt": "2025-01-13T14:45:00.000Z"
+  },
+  {
+    "_id": "user-abc",
+    "name": "Regular User",
+    "email": "user@test.com",
+    "role": "USER",
+    "isAdmin": false,
+    "status": "ACTIVE",
+    "createdAt": "2025-01-04T00:00:00.000Z",
+    "updatedAt": "2025-01-12T11:20:00.000Z",
+    "lastLoginAt": "2025-01-12T11:20:00.000Z"
+  },
+  {
+    "_id": "inactive-user-def",
+    "name": "Inactive User",
+    "email": "inactive@test.com",
+    "role": "USER",
+    "isAdmin": false,
+    "status": "INACTIVE",
+    "createdAt": "2025-01-05T00:00:00.000Z",
+    "updatedAt": "2025-01-10T09:00:00.000Z",
+    "lastLoginAt": null
+  },
+  {
+    "_id": "blocked-user-ghi",
+    "name": "Blocked User",
+    "email": "blocked@test.com",
+    "role": "USER",
+    "isAdmin": false,
+    "status": "BLOCKED",
+    "createdAt": "2025-01-06T00:00:00.000Z",
+    "updatedAt": "2025-01-08T16:30:00.000Z",
+    "lastLoginAt": "2025-01-07T10:00:00.000Z"
+  },
+  {
+    "_id": "pending-user-jkl",
+    "name": "Pending User",
+    "email": "pending@test.com",
+    "role": "USER",
+    "isAdmin": false,
+    "status": "PENDING",
+    "createdAt": "2025-01-07T00:00:00.000Z",
+    "updatedAt": "2025-01-07T00:00:00.000Z",
+    "lastLoginAt": null
+  }
+]

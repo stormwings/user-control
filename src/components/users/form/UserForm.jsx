@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Card } from '../../ui/Card';
 import { Button } from '../../ui/Button';
 import { UserProfileFields } from './UserProfileFields';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UserForm = ({
   onSubmit,
@@ -54,7 +55,7 @@ export const UserForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6" data-cy={USERS_TEST_IDS.USER_FORM}>
       <Card>
         <h2 className="text-lg font-semibold text-gray-100 mb-4">
           Información del Usuario
@@ -73,6 +74,7 @@ export const UserForm = ({
           variant="ghost"
           onClick={onCancel}
           disabled={isLoading}
+          dataCy={USERS_TEST_IDS.USER_FORM_CANCEL_BUTTON}
         >
           Cancelar
         </Button>
@@ -81,6 +83,7 @@ export const UserForm = ({
           type="submit"
           variant="primary"
           disabled={isLoading}
+          dataCy={USERS_TEST_IDS.USER_FORM_SUBMIT_BUTTON}
         >
           {isLoading ? 'Creando...' : 'Crear Usuario'}
         </Button>

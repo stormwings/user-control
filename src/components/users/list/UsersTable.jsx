@@ -1,6 +1,7 @@
 import { UsersTableHeader } from './UsersTableHeader';
 import { UsersTableBody } from './UsersTableBody';
 import { UsersEmptyState } from './UsersEmptyState';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UsersTable = ({
   users,
@@ -11,7 +12,7 @@ export const UsersTable = ({
 }) => {
   if (isLoading) {
     return (
-      <div className="rounded-lg border border-gray-700 overflow-hidden bg-gray-800">
+      <div className="rounded-lg border border-gray-700 overflow-hidden bg-gray-800" data-cy={USERS_TEST_IDS.USERS_TABLE}>
         <div className="flex items-center justify-center py-12">
           <div className="flex flex-col items-center gap-3">
             <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-700 border-t-brand-hover"></div>
@@ -26,14 +27,14 @@ export const UsersTable = ({
 
   if (!users || users.length === 0) {
     return (
-      <div className="rounded-lg border border-gray-700 overflow-hidden bg-gray-800">
+      <div className="rounded-lg border border-gray-700 overflow-hidden bg-gray-800" data-cy={USERS_TEST_IDS.USERS_TABLE}>
         <UsersEmptyState />
       </div>
     );
   }
 
   return (
-    <div className="rounded-lg border border-gray-700 overflow-hidden">
+    <div className="rounded-lg border border-gray-700 overflow-hidden" data-cy={USERS_TEST_IDS.USERS_TABLE}>
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-700">
           <UsersTableHeader />

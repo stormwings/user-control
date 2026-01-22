@@ -1,5 +1,6 @@
 import { FiUserPlus, FiDownload, FiFilter } from 'react-icons/fi';
 import { Button } from '../../ui/Button';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UsersToolbar = ({
   onCreateUser,
@@ -16,6 +17,7 @@ export const UsersToolbar = ({
             size="md"
             onClick={onCreateUser}
             className="gap-2"
+            dataCy={USERS_TEST_IDS.USERS_CREATE_BUTTON}
           >
             <FiUserPlus className="text-lg" />
             <span>Nuevo Usuario</span>

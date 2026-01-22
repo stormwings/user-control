@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Button } from '../../ui/Button';
 import { UserStatusBadge } from '../list/UserStatusBadge';
 import { UserRoleBadge } from '../list/UserRoleBadge';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const UserDetailHeader = ({ user, onAction }) => {
   const navigate = useNavigate();
@@ -16,6 +17,7 @@ export const UserDetailHeader = ({ user, onAction }) => {
             size="sm"
             onClick={() => navigate('/dashboard/users')}
             className="mb-4"
+            dataCy={USERS_TEST_IDS.USER_DETAIL_BACK_BUTTON}
           >
             <FiArrowLeft />
             <span>Volver a lista</span>
@@ -27,15 +29,15 @@ export const UserDetailHeader = ({ user, onAction }) => {
             </div>
 
             <div>
-              <h1 className="text-2xl font-semibold text-gray-100">
+              <h1 className="text-2xl font-semibold text-gray-100" data-cy={USERS_TEST_IDS.USER_DETAIL_NAME}>
                 {user?.name || 'Usuario'}
               </h1>
-              <p className="text-sm text-gray-400 mt-1">
+              <p className="text-sm text-gray-400 mt-1" data-cy={USERS_TEST_IDS.USER_DETAIL_EMAIL}>
                 {user?.email}
               </p>
               <div className="flex items-center gap-2 mt-2">
-                <UserRoleBadge role={user?.role} />
-                <UserStatusBadge status={user?.status} />
+                <UserRoleBadge role={user?.role} dataCy={USERS_TEST_IDS.USER_DETAIL_ROLE} />
+                <UserStatusBadge status={user?.status} dataCy={USERS_TEST_IDS.USER_DETAIL_STATUS} />
               </div>
             </div>
           </div>

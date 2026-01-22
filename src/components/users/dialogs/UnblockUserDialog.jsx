@@ -23,6 +23,7 @@ export const UnblockUserDialog = ({ open, user, onClose, onSuccess }) => {
         className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
+        data-cy="user-unblock-dialog"
       >
         <div className="p-6">
           <div className="flex items-start gap-3 mb-4">
@@ -48,6 +49,7 @@ export const UnblockUserDialog = ({ open, user, onClose, onSuccess }) => {
               onClick={onClose}
               disabled={isLoading}
               className="px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 rounded-lg transition-colors disabled:opacity-60"
+              data-cy="user-unblock-cancel"
             >
               Cancelar
             </button>
@@ -55,6 +57,7 @@ export const UnblockUserDialog = ({ open, user, onClose, onSuccess }) => {
               onClick={handleConfirm}
               disabled={isLoading}
               className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg transition-colors disabled:opacity-60"
+              data-cy="user-unblock-confirm"
             >
               {isLoading ? 'Desbloqueando...' : 'Desbloquear Usuario'}
             </button>

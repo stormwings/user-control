@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { FiLock } from 'react-icons/fi';
 import useUserMutations from '../../../hooks/useUserMutations';
+import { USERS_TEST_IDS } from '../../../constants/testIds';
 
 export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
   const [reason, setReason] = useState('');
@@ -26,6 +27,7 @@ export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
         className="w-full max-w-md rounded-xl bg-gray-800 border border-gray-700 shadow-xl"
         role="dialog"
         aria-modal="true"
+        data-cy={USERS_TEST_IDS.USER_BLOCK_DIALOG}
       >
         <div className="p-6">
           <div className="flex items-start gap-3 mb-4">
@@ -65,6 +67,7 @@ export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
               onClick={onClose}
               disabled={isLoading}
               className="px-4 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 rounded-lg transition-colors disabled:opacity-60"
+              data-cy="user-block-cancel"
             >
               Cancelar
             </button>
@@ -72,6 +75,7 @@ export const BlockUserDialog = ({ open, user, onClose, onSuccess }) => {
               onClick={handleConfirm}
               disabled={isLoading}
               className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-700 rounded-lg transition-colors disabled:opacity-60"
+              data-cy="user-block-confirm"
             >
               {isLoading ? 'Bloqueando...' : 'Bloquear Usuario'}
             </button>
